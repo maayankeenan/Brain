@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Hello World in Backbone.js</title>
 </head>
-<body>
+<body style="direction: rtl">
 <!-- ========= -->
 <!-- Your HTML -->
 <!-- ========= -->
@@ -13,10 +13,13 @@
 
     <div class="dynamic-view">
         <h2>הכנס מספר ת.ז</h2>
-        <input type="text"/>
+        <input type="text" id="idBox"/>
         <button id="startBtn">התחל</button>
+        <br/>
+        <label style="color: red;" id="error"></label>
     </div>
-    <div class="actions" style="display: none"><button id="next">הבא</button></div>
+    <br/><br/>
+    <div class="actions" style="display: none; margin-right: 100px"><button id="next">הבא</button></div>
 
 
 
@@ -29,11 +32,2991 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js" type="text/javascript"></script>
 <script src="js/views/main.js" type="text/javascript"></script>
 <script src="js/views/timeView.js" type="text/javascript"></script>
+<script src="js/views/locationView.js" type="text/javascript"></script>
+<script src="js/views/minus7View.js" type="text/javascript"></script>
+
+<link href="resources/bootstrap-3.3.2-dist/css/bootstrap.css" rel="stylesheet" media="screen">
+
+<script type="text/template" id="LocationView">
+    <h2 style="text-align: center">הכנס את מיקומך הנוכחי</h2>
+    <br/><br/>
+    <div style="align-content: center">
+    <label style="margin-left: 10px">עיר</label><select id="city">
+    <option selected="selected"  >אבו גוש</option>
+    <option  >אבו סנאן</option>
+    <option  >אבו קורינאת (יישוב)</option>
+    <option  >אבו תלול</option>
+    <option  >אבטין</option>
+    <option  >אבטליון</option>
+    <option  >אביאל</option>
+    <option  >אביבים</option>
+    <option  >אביגדור</option>
+    <option  >אביחיל</option>
+    <option  >אביטל</option>
+    <option  >אביעזר</option>
+    <option  >אבירים</option>
+    <option  >אבן יהודה</option>
+    <option  >אבן מנחם</option>
+    <option  >אבן ספיר</option>
+    <option  >אבן שמואל</option>
+    <option  >אבני איתן</option>
+    <option  >אבני חפץ</option>
+    <option  >אבנת</option>
+    <option  >אבשלום</option>
+    <option  >אדורה</option>
+    <option  >אדירים</option>
+    <option  >אדמית</option>
+    <option  >אדרת</option>
+    <option  >אודים</option>
+    <option  >אודם</option>
+    <option  >אוהד</option>
+    <option  >אום אל-פחם</option>
+    <option  >אום אל-קוטוף</option>
+    <option  >אום בטין</option>
+    <option  >אומן</option>
+    <option  >אומץ</option>
+    <option  >אופקים</option>
+    <option  >אור הגנוז</option>
+    <option  >אור הנר</option>
+    <option  >אור יהודה</option>
+    <option  >אור עקיבא</option>
+    <option  >אורה</option>
+    <option  >אורון</option>
+    <option  >אורות</option>
+    <option  >אורטל</option>
+    <option  >אורים</option>
+    <option  >אורנים</option>
+    <option  >אורנית</option>
+    <option  >אושה</option>
+    <option  >אזור</option>
+    <option  >אזור תעסוקה מיתרים*</option>
+    <option  >אזור תעסוקה משגב</option>
+    <option  >אזור תעסוקה משגב(תרדיון)</option>
+    <option  >אזור תעשייה אכזיב (מילואות)</option>
+    <option  >אזור תעשייה נעמן (מילואות)</option>
+    <option  >אחווה</option>
+    <option  >אחוזם</option>
+    <option  >אחוזת ברק</option>
+    <option  >אחיהוד</option>
+    <option  >אחיטוב</option>
+    <option  >אחיסמך</option>
+    <option  >אחיעזר</option>
+    <option  >איבים</option>
+    <option  >אייל</option>
+    <option  >איילת השחר</option>
+    <option  >אילון</option>
+    <option  >אילון תבור*</option>
+    <option  >אילות</option>
+    <option  >אילנייה</option>
+    <option  >אילת</option>
+    <option  >אירוס</option>
+    <option  >איתמר</option>
+    <option  >איתן</option>
+    <option  >איתנים</option>
+    <option  >אכסאל</option>
+    <option  >אל סייד</option>
+    <option  >אל -עזי</option>
+    <option  >אל -עריאן</option>
+    <option  >אל -רום</option>
+    <option  >אלומה</option>
+    <option  >אלומות</option>
+    <option  >אלון הגליל</option>
+    <option  >אלון מורה</option>
+    <option  >אלון שבות</option>
+    <option  >אלוני אבא</option>
+    <option  >אלוני הבשן</option>
+    <option  >אלוני יצחק</option>
+    <option  >אלונים</option>
+    <option  >אלי סיני</option>
+    <option  >אליאב</option>
+    <option  >אליכין</option>
+    <option  >אלי-עד</option>
+    <option  >אליפז</option>
+    <option  >אליפלט</option>
+    <option  >אליקים</option>
+    <option  >אלישיב</option>
+    <option  >אלישמע</option>
+    <option  >אלמגור</option>
+    <option  >אלמוג</option>
+    <option  >אלעד</option>
+    <option  >אלעזר</option>
+    <option  >אלפי מנשה</option>
+    <option  >אלקוש</option>
+    <option  >אלקנה</option>
+    <option  >אמונים</option>
+    <option  >אמירים</option>
+    <option  >אמנון</option>
+    <option  >אמציה</option>
+    <option  >אניעם</option>
+    <option  >אספר</option>
+    <option  >אעבלין</option>
+    <option  >אפיק</option>
+    <option  >אפיקים</option>
+    <option  >אפעל-מרכז סמינריוני</option>
+    <option  >אפק</option>
+    <option  >אפרת</option>
+    <option  >אפרתה</option>
+    <option  >ארבל</option>
+    <option  >ארגמן</option>
+    <option  >ארז</option>
+    <option  >אריאל</option>
+    <option  >ארסוף</option>
+    <option  >אשבול</option>
+    <option  >אשבל</option>
+    <option  >אשדוד</option>
+    <option  >אשדות יעקב (איחוד)</option>
+    <option  >אשדות יעקב (מאוחד)</option>
+    <option  >אשחר</option>
+    <option  >אשכולות</option>
+    <option  >אשל הנשיא</option>
+    <option  >אשלים</option>
+    <option  >אשקלון</option>
+    <option  >אשרת</option>
+    <option  >אשתאול</option>
+    <option  >באקה אל-גרביה</option>
+    <option  >באקה-ג'ת*</option>
+    <option  >באר אורה</option>
+    <option  >באר גנים</option>
+    <option  >באר טוביה</option>
+    <option  >באר יעקב</option>
+    <option  >באר מילכה</option>
+    <option  >באר שבע</option>
+    <option  >בארות יצחק</option>
+    <option  >בארותיים</option>
+    <option  >בארי</option>
+    <option  >בדולח</option>
+    <option  >בוסתן הגליל</option>
+    <option  >בועיינה-נוג'ידאת</option>
+    <option  >בוקעאתא</option>
+    <option  >בורגתה</option>
+    <option  >בחן</option>
+    <option  >בטחה</option>
+    <option  >בי"ס אזורי מקיף (אשר)</option>
+    <option  >ביצרון</option>
+    <option  >ביר אל-מכסור</option>
+    <option  >ביר הדאג'</option>
+    <option  >בירייה</option>
+    <option  >בית אורן</option>
+    <option  >בית אל</option>
+    <option  >בית אלעזרי</option>
+    <option  >בית אלפא</option>
+    <option  >בית אריה</option>
+    <option  >בית ברל</option>
+    <option  >בית גוברין</option>
+    <option  >בית גמליאל</option>
+    <option  >בית ג'ן</option>
+    <option  >בית דגן</option>
+    <option  >בית הגדי</option>
+    <option  >בית הלוי</option>
+    <option  >בית הלל</option>
+    <option  >בית העמק</option>
+    <option  >בית הערבה</option>
+    <option  >בית השיטה</option>
+    <option  >בית זיד</option>
+    <option  >בית זית</option>
+    <option  >בית זרע</option>
+    <option  >בית חולים פוריה</option>
+    <option  >בית חורון</option>
+    <option  >בית חירות</option>
+    <option  >בית חלקיה</option>
+    <option  >בית חנן</option>
+    <option  >בית חנניה</option>
+    <option  >בית חשמונאי</option>
+    <option  >בית יהושע</option>
+    <option  >בית יוסף</option>
+    <option  >בית ינאי</option>
+    <option  >בית יצחק-שער חפר</option>
+    <option  >בית לחם הגלילית</option>
+    <option  >בית מאיר</option>
+    <option  >בית נחמיה</option>
+    <option  >בית ניר</option>
+    <option  >בית נקופה</option>
+    <option  >בית עובד</option>
+    <option  >בית עוזיאל</option>
+    <option  >בית עזרא</option>
+    <option  >בית עריף</option>
+    <option  >בית צבי</option>
+    <option  >בית קמה</option>
+    <option  >בית קשת</option>
+    <option  >בית רבן</option>
+    <option  >בית רימון</option>
+    <option  >בית שאן</option>
+    <option  >בית שמש</option>
+    <option  >בית שערים</option>
+    <option  >בית שקמה</option>
+    <option  >ביתן אהרן</option>
+    <option  >ביתר עילית</option>
+    <option  >בלפוריה</option>
+    <option  >בן זכאי</option>
+    <option  >בן עמי</option>
+    <option  >בן שמן (כפר נוער)</option>
+    <option  >בן שמן (מושב)</option>
+    <option  >בני ברק</option>
+    <option  >בני דקלים</option>
+    <option  >בני דרום</option>
+    <option  >בני דרור</option>
+    <option  >בני יהודה</option>
+    <option  >בני נצרים</option>
+    <option  >בני עטרות</option>
+    <option  >בני עי"ש</option>
+    <option  >בני עצמון</option>
+    <option  >בני ציון</option>
+    <option  >בני ראם</option>
+    <option  >בניה</option>
+    <option  >בנימינה-גבעת עדה*</option>
+    <option  >בסמ"ה</option>
+    <option  >בסמת טבעון</option>
+    <option  >בענה</option>
+    <option  >בצרה</option>
+    <option  >בצת</option>
+    <option  >בקוע</option>
+    <option  >בקעות</option>
+    <option  >בר גיורא</option>
+    <option  >בר יוחאי</option>
+    <option  >ברוכין</option>
+    <option  >ברור חיל</option>
+    <option  >ברוש</option>
+    <option  >ברכה</option>
+    <option  >ברכיה</option>
+    <option  >בר-לב</option>
+    <option  >ברעם</option>
+    <option  >ברק</option>
+    <option  >ברקאי</option>
+    <option  >ברקן</option>
+    <option  >ברקת</option>
+    <option  >בת הדר</option>
+    <option  >בת חן</option>
+    <option  >בת חפר</option>
+    <option  >בת חצור</option>
+    <option  >בת ים</option>
+    <option  >בת עין</option>
+    <option  >בת שלמה</option>
+    <option  >בתי זיקוק - קישון</option>
+    <option  >בתי זיקוק - קישון*</option>
+    <option  >בתי ספר של מרחבים*</option>
+    <option  >גאולי תימן</option>
+    <option  >גאולים</option>
+    <option  >גאליה</option>
+    <option  >גבולות</option>
+    <option  >גבים</option>
+    <option  >גבע</option>
+    <option  >גבע בנימין</option>
+    <option  >גבע כרמל</option>
+    <option  >גבעולים</option>
+    <option  >גבעון החדשה</option>
+    <option  >גבעות בר</option>
+    <option  >גבעת אבני</option>
+    <option  >גבעת אלה</option>
+    <option  >גבעת ברנר</option>
+    <option  >גבעת השלושה</option>
+    <option  >גבעת זאב</option>
+    <option  >גבעת ח"ן</option>
+    <option  >גבעת חביבה</option>
+    <option  >גבעת חיים (איחוד)</option>
+    <option  >גבעת חיים (מאוחד)</option>
+    <option  >גבעת יואב</option>
+    <option  >גבעת יערים</option>
+    <option  >גבעת ישעיהו</option>
+    <option  >גבעת כ"ח</option>
+    <option  >גבעת ניל"י</option>
+    <option  >גבעת עוז</option>
+    <option  >גבעת שמואל</option>
+    <option  >גבעת שמש</option>
+    <option  >גבעת שפירא</option>
+    <option  >גבעתי</option>
+    <option  >גבעתיים</option>
+    <option  >גברעם</option>
+    <option  >גבת</option>
+    <option  >גדות</option>
+    <option  >גדיד</option>
+    <option  >ג'דיידה-מכר</option>
+    <option  >גדיש</option>
+    <option  >גדעונה</option>
+    <option  >גדרה</option>
+    <option  >ג'ולס</option>
+    <option  >גונן</option>
+    <option  >גורן</option>
+    <option  >גורנות הגליל</option>
+    <option  >גזית</option>
+    <option  >גזר</option>
+    <option  >גיאה</option>
+    <option  >גיבתון</option>
+    <option  >גיזו</option>
+    <option  >גילון</option>
+    <option  >גילת</option>
+    <option  >גינוסר</option>
+    <option  >גיניגר</option>
+    <option  >גינתון</option>
+    <option  >גיתה</option>
+    <option  >גיתית</option>
+    <option  >גלאון</option>
+    <option  >ג'לג'וליה</option>
+    <option  >גלגל</option>
+    <option  >גליל ים</option>
+    <option  >גלעד (אבן יצחק)</option>
+    <option  >גמזו</option>
+    <option  >גן אור</option>
+    <option  >גן הדרום</option>
+    <option  >גן השומרון</option>
+    <option  >גן חיים</option>
+    <option  >גן יאשיה</option>
+    <option  >גן יבנה</option>
+    <option  >גן נר</option>
+    <option  >גן שורק</option>
+    <option  >גן שלמה</option>
+    <option  >גן שמואל</option>
+    <option  >גנות</option>
+    <option  >גנות הדר</option>
+    <option  >גני הדר</option>
+    <option  >גני טל</option>
+    <option  >גני טל* </option>
+    <option  >גני יוחנן</option>
+    <option  >גני עם</option>
+    <option  >גני תקווה</option>
+    <option  >גנים</option>
+    <option  >ג'סר א-זרקא</option>
+    <option  >געש</option>
+    <option  >געתון</option>
+    <option  >גפן</option>
+    <option  >גרופית</option>
+    <option  >ג'ש (גוש חלב)</option>
+    <option  >גשור</option>
+    <option  >גשר</option>
+    <option  >גשר הזיו</option>
+    <option  >ג'ת</option>
+    <option  >גת (קיבוץ)</option>
+    <option  >גת רימון</option>
+    <option  >דאלית אל-כרמל</option>
+    <option  >דאלית אל-כרמל-עספיא*</option>
+    <option  >דבורה</option>
+    <option  >דבורייה</option>
+    <option  >דבירה</option>
+    <option  >דברת</option>
+    <option  >דגניה א'</option>
+    <option  >דגניה ב'</option>
+    <option  >דוב"ב</option>
+    <option  >דוגית</option>
+    <option  >דולב</option>
+    <option  >דור</option>
+    <option  >דורות</option>
+    <option  >דחי</option>
+    <option  >דייר אל-אסד</option>
+    <option  >דייר חנא</option>
+    <option  >דייר ראפאת</option>
+    <option  >דימונה</option>
+    <option  >דישון</option>
+    <option  >דלייה</option>
+    <option  >דלתון</option>
+    <option  >דלתון</option>
+    <option  >דמיידה</option>
+    <option  >דן</option>
+    <option  >דפנה</option>
+    <option  >דקל</option>
+    <option  >דריג'את</option>
+    <option  >האון</option>
+    <option  >הבונים</option>
+    <option  >הגושרים</option>
+    <option  >הדר עם</option>
+    <option  >הוד השרון</option>
+    <option  >הודיות</option>
+    <option  >הודייה</option>
+    <option  >הושעיה</option>
+    <option  >הזורע</option>
+    <option  >הזורעים</option>
+    <option  >החותרים</option>
+    <option  >היוגב</option>
+    <option  >הילה</option>
+    <option  >המעפיל</option>
+    <option  >המרכז למחקר-נחל שורק</option>
+    <option  >הסוללים</option>
+    <option  >העוגן</option>
+    <option  >הר אדר</option>
+    <option  >הר גילה</option>
+    <option  >הר עמשא</option>
+    <option  >הראל</option>
+    <option  >הרדוף</option>
+    <option  >הרצלייה</option>
+    <option  >הררית</option>
+    <option  >ורד יריחו</option>
+    <option  >ורדון</option>
+    <option  >זבדיאל</option>
+    <option  >זוהר</option>
+    <option  >זיקים</option>
+    <option  >זיתן</option>
+    <option  >זכרון יעקב</option>
+    <option  >זכריה</option>
+    <option  >זמר</option>
+    <option  >זמרת</option>
+    <option  >זנוח</option>
+    <option  >זרועה</option>
+    <option  >זרזיר</option>
+    <option  >זרחיה</option>
+    <option  >חבצלת השרון</option>
+    <option  >חבר</option>
+    <option  >חגור</option>
+    <option  >חגי</option>
+    <option  >חגלה</option>
+    <option  >חדיד</option>
+    <option  >חד-נס</option>
+    <option  >חדרה</option>
+    <option  >ח'ואלד</option>
+    <option  >חולדה</option>
+    <option  >חולון</option>
+    <option  >חולית</option>
+    <option  >חולתה</option>
+    <option  >חומש</option>
+    <option  >חוסן</option>
+    <option  >חוסנייה</option>
+    <option  >חופית</option>
+    <option  >חוקוק</option>
+    <option  >חורה</option>
+    <option  >חורפיש</option>
+    <option  >חורשים</option>
+    <option  >חזון</option>
+    <option  >חיבת ציון</option>
+    <option  >חיננית</option>
+    <option  >חיפה</option>
+    <option  >חירות</option>
+    <option  >חלוץ</option>
+    <option  >חלמיש</option>
+    <option  >חלץ</option>
+    <option  >חמאם</option>
+    <option  >חמד</option>
+    <option  >חמדיה</option>
+    <option  >חמדת</option>
+    <option  >חמרה</option>
+    <option  >חניאל</option>
+    <option  >חניתה</option>
+    <option  >חנתון</option>
+    <option  >חספין</option>
+    <option  >חפץ חיים</option>
+    <option  >חפצי-בה</option>
+    <option  >חצב</option>
+    <option  >חצבה</option>
+    <option  >חצור הגלילית</option>
+    <option  >חצור-אשדוד</option>
+    <option  >חצרים</option>
+    <option  >חרב לאת</option>
+    <option  >חרוצים</option>
+    <option  >חריש</option>
+    <option  >חרמש</option>
+    <option  >חרשים</option>
+    <option  >חשמונאים</option>
+    <option  >טבריה</option>
+    <option  >טובא-זנגרייה</option>
+    <option  >טורעאן</option>
+    <option  >טייבה</option>
+    <option  >טייבה (בעמק)</option>
+    <option  >טירה</option>
+    <option  >טירת יהודה</option>
+    <option  >טירת כרמל</option>
+    <option  >טירת צבי</option>
+    <option  >טל שחר</option>
+    <option  >טל-אל</option>
+    <option  >טללים</option>
+    <option  >טלמון</option>
+    <option  >טמרה</option>
+    <option  >טמרה (יזרעאל)</option>
+    <option  >טנא</option>
+    <option  >טפחות</option>
+    <option  >יאנוח-ג'ת</option>
+    <option  >יבול</option>
+    <option  >יבנאל</option>
+    <option  >יבנה</option>
+    <option  >יגור</option>
+    <option  >יגל</option>
+    <option  >יד בנימין</option>
+    <option  >יד השמונה</option>
+    <option  >יד חנה</option>
+    <option  >יד מרדכי</option>
+    <option  >יד נתן</option>
+    <option  >יד רמב"ם</option>
+    <option  >ידידה</option>
+    <option  >יהוד</option>
+    <option  >יהוד-נווה אפרים*</option>
+    <option  >יהל</option>
+    <option  >יובל</option>
+    <option  >יובלים</option>
+    <option  >יודפת</option>
+    <option  >יונתן</option>
+    <option  >יושיביה</option>
+    <option  >יזרעאל</option>
+    <option  >יחיעם</option>
+    <option  >יטבתה</option>
+    <option  >ייט"ב</option>
+    <option  >יכיני</option>
+    <option  >ים המלח - בתי מלון</option>
+    <option  >ינוב</option>
+    <option  >ינון</option>
+    <option  >יסוד המעלה</option>
+    <option  >יסודות</option>
+    <option  >יסעור</option>
+    <option  >יעד</option>
+    <option  >יעל</option>
+    <option  >יעף</option>
+    <option  >יערה</option>
+    <option  >יפיע</option>
+    <option  >יפית</option>
+    <option  >יפעת</option>
+    <option  >יפתח</option>
+    <option  >יצהר</option>
+    <option  >יציץ</option>
+    <option  >יקום</option>
+    <option  >יקיר</option>
+    <option  >יקנעם (מושבה)</option>
+    <option  >יקנעם עילית</option>
+    <option  >יראון</option>
+    <option  >ירדנה</option>
+    <option  >ירוחם</option>
+    <option  >ירושלים</option>
+    <option  >ירחיב</option>
+    <option  >ירכא</option>
+    <option  >ירקונה</option>
+    <option  >ישע</option>
+    <option  >ישעי</option>
+    <option  >ישרש</option>
+    <option  >יתד</option>
+    <option  >כאבול</option>
+    <option  >כאוכב אבו אל-היג'א</option>
+    <option  >כברי</option>
+    <option  >כדורי</option>
+    <option  >כדים</option>
+    <option  >כדיתה</option>
+    <option  >כוכב השחר</option>
+    <option  >כוכב יאיר</option>
+    <option  >כוכב יעקב</option>
+    <option  >כוכב מיכאל</option>
+    <option  >כורזים</option>
+    <option  >כחל</option>
+    <option  >כחלה</option>
+    <option  >כיסופים</option>
+    <option  >כישור</option>
+    <option  >כליל</option>
+    <option  >כלנית</option>
+    <option  >כמאנה</option>
+    <option  >כמהין</option>
+    <option  >כמון</option>
+    <option  >כנות</option>
+    <option  >כנף</option>
+    <option  >כנרת (מושבה)</option>
+    <option  >כנרת (קבוצה)</option>
+    <option  >כסיפה</option>
+    <option  >כסלון</option>
+    <option  >כסרא-סמיע</option>
+    <option  >כעביה-טבאש-חג'אג'רה</option>
+    <option  >כפר אביב</option>
+    <option  >כפר אדומים</option>
+    <option  >כפר אוריה</option>
+    <option  >כפר אז"ר</option>
+    <option  >כפר אחים</option>
+    <option  >כפר ביאליק</option>
+    <option  >כפר ביל"ו</option>
+    <option  >כפר בלום</option>
+    <option  >כפר בן נון</option>
+    <option  >כפר ברא</option>
+    <option  >כפר ברוך</option>
+    <option  >כפר גדעון</option>
+    <option  >כפר גלים</option>
+    <option  >כפר גליקסון</option>
+    <option  >כפר גלעדי</option>
+    <option  >כפר דניאל</option>
+    <option  >כפר דרום</option>
+    <option  >כפר האורנים</option>
+    <option  >כפר החורש</option>
+    <option  >כפר המכבי</option>
+    <option  >כפר הנגיד</option>
+    <option  >כפר הנוער הדתי</option>
+    <option  >כפר הנשיא</option>
+    <option  >כפר הס</option>
+    <option  >כפר הרא"ה</option>
+    <option  >כפר הרי"ף</option>
+    <option  >כפר ויתקין</option>
+    <option  >כפר ורבורג</option>
+    <option  >כפר ורדים</option>
+    <option  >כפר זוהרים</option>
+    <option  >כפר זיתים</option>
+    <option  >כפר חב"ד</option>
+    <option  >כפר חושן</option>
+    <option  >כפר חיטים</option>
+    <option  >כפר חיים</option>
+    <option  >כפר חנניה</option>
+    <option  >כפר חסידים א'</option>
+    <option  >כפר חסידים ב'</option>
+    <option  >כפר חרוב</option>
+    <option  >כפר טרומן</option>
+    <option  >כפר יאסיף</option>
+    <option  >כפר ידידיה</option>
+    <option  >כפר יהושע</option>
+    <option  >כפר יונה</option>
+    <option  >כפר יחזקאל</option>
+    <option  >כפר יעבץ</option>
+    <option  >כפר כמא</option>
+    <option  >כפר כנא</option>
+    <option  >כפר מונש</option>
+    <option  >כפר מימון</option>
+    <option  >כפר מל"ל</option>
+    <option  >כפר מנדא</option>
+    <option  >כפר מנחם</option>
+    <option  >כפר מסריק</option>
+    <option  >כפר מצר</option>
+    <option  >כפר מרדכי</option>
+    <option  >כפר נטר</option>
+    <option  >כפר סאלד</option>
+    <option  >כפר סבא</option>
+    <option  >כפר סילבר</option>
+    <option  >כפר סירקין</option>
+    <option  >כפר עבודה</option>
+    <option  >כפר עזה</option>
+    <option  >כפר עציון</option>
+    <option  >כפר פינס</option>
+    <option  >כפר קאסם</option>
+    <option  >כפר קיש</option>
+    <option  >כפר קרע</option>
+    <option  >כפר ראש הנקרה</option>
+    <option  >כפר רוזנואלד (זרעית)</option>
+    <option  >כפר רופין</option>
+    <option  >כפר רות</option>
+    <option  >כפר שמאי</option>
+    <option  >כפר שמואל</option>
+    <option  >כפר שמריהו</option>
+    <option  >כפר תבור</option>
+    <option  >כפר תפוח</option>
+    <option  >כרכום</option>
+    <option  >כרם בן זמרה</option>
+    <option  >כרם בן שמן</option>
+    <option  >כרם יבנה (ישיבה)</option>
+    <option  >כרם מהר"ל</option>
+    <option  >כרם שלום</option>
+    <option  >כרמי יוסף</option>
+    <option  >כרמי צור</option>
+    <option  >כרמיאל</option>
+    <option  >כרמייה</option>
+    <option  >כרמים</option>
+    <option  >כרמל</option>
+    <option  >לבון</option>
+    <option  >לביא</option>
+    <option  >לבנים</option>
+    <option  >להב</option>
+    <option  >להבות הבשן</option>
+    <option  >להבות חביבה</option>
+    <option  >להבים</option>
+    <option  >לוד</option>
+    <option  >לוזית</option>
+    <option  >לוחמי הגיטאות</option>
+    <option  >לוטם</option>
+    <option  >לוטן</option>
+    <option  >לימן</option>
+    <option  >לכיש</option>
+    <option  >לפיד</option>
+    <option  >לפידות</option>
+    <option  >לקיה</option>
+    <option  >מאור</option>
+    <option  >מאיר שפיה</option>
+    <option  >מבוא ביתר</option>
+    <option  >מבוא דותן</option>
+    <option  >מבוא חורון</option>
+    <option  >מבוא חמה</option>
+    <option  >מבוא מודיעים</option>
+    <option  >מבואות ים</option>
+    <option  >מבועים</option>
+    <option  >מבטחים</option>
+    <option  >מבקיעים</option>
+    <option  >מבשרת ציון</option>
+    <option  >מגאר</option>
+    <option  >מג'ד אל-כרום</option>
+    <option  >מגדים</option>
+    <option  >מגדל</option>
+    <option  >מגדל העמק</option>
+    <option  >מגדל עוז</option>
+    <option  >מג'דל שמס</option>
+    <option  >מגדל תפן</option>
+    <option  >מגדלים</option>
+    <option  >מגידו</option>
+    <option  >מגל</option>
+    <option  >מגן</option>
+    <option  >מגן שאול</option>
+    <option  >מגשימים</option>
+    <option  >מדרך עוז</option>
+    <option  >מדרשת בן גוריון</option>
+    <option  >מדרשת רופין</option>
+    <option  >מודיעין עילית</option>
+    <option  >מודיעין-מכבים-רעות*</option>
+    <option  >מולדה*</option>
+    <option  >מולדת</option>
+    <option  >מוצא עילית</option>
+    <option  >מוקייבלה</option>
+    <option  >מורג</option>
+    <option  >מורן</option>
+    <option  >מורשת</option>
+    <option  >מזור</option>
+    <option  >מזכרת בתיה</option>
+    <option  >מזרע</option>
+    <option  >מזרעה</option>
+    <option  >מחולה</option>
+    <option  >מחנה יבור</option>
+    <option  >מחנה יתיר</option>
+    <option  >מחניים</option>
+    <option  >מחסיה</option>
+    <option  >מטולה</option>
+    <option  >מטע</option>
+    <option  >מי עמי</option>
+    <option  >מיטב</option>
+    <option  >מייסר</option>
+    <option  >מיצר</option>
+    <option  >מירב</option>
+    <option  >מירון</option>
+    <option  >מישר</option>
+    <option  >מיתר</option>
+    <option  >מכורה</option>
+    <option  >מכחול</option>
+    <option  >מכמורת</option>
+    <option  >מכמנים</option>
+    <option  >מלאה</option>
+    <option  >מלילות</option>
+    <option  >מלכייה</option>
+    <option  >מלכישוע</option>
+    <option  >מנוחה</option>
+    <option  >מנוף</option>
+    <option  >מנות</option>
+    <option  >מנחמיה</option>
+    <option  >מנרה</option>
+    <option  >מנשית זבדה</option>
+    <option  >מסד</option>
+    <option  >מסדה</option>
+    <option  >מסילות</option>
+    <option  >מסילת ציון</option>
+    <option  >מסלול</option>
+    <option  >מסעדה</option>
+    <option  >מעברות</option>
+    <option  >מעגלים</option>
+    <option  >מעגן</option>
+    <option  >מעגן מיכאל</option>
+    <option  >מעוז חיים</option>
+    <option  >מעון</option>
+    <option  >מעונה</option>
+    <option  >מעיין ברוך</option>
+    <option  >מעיין צבי</option>
+    <option  >מעיליא</option>
+    <option  >מעלה אדומים</option>
+    <option  >מעלה אפרים</option>
+    <option  >מעלה גלבוע</option>
+    <option  >מעלה גמלא</option>
+    <option  >מעלה החמישה</option>
+    <option  >מעלה לבונה</option>
+    <option  >מעלה מכמש</option>
+    <option  >מעלה עירון</option>
+    <option  >מעלה עמוס</option>
+    <option  >מעלה שומרון</option>
+    <option  >מעלות-תרשיחא</option>
+    <option  >מענית</option>
+    <option  >מעש</option>
+    <option  >מפלסים</option>
+    <option  >מפעלי אבשלו"ם</option>
+    <option  >מפעלי אבשלום</option>
+    <option  >מפעלי ברנר</option>
+    <option  >מפעלי ברקן</option>
+    <option  >מפעלי ברקן*</option>
+    <option  >מפעלי גלבוע</option>
+    <option  >מפעלי גליל עליון</option>
+    <option  >מפעלי גרנות</option>
+    <option  >מפעלי העמק (יזרעאל)</option>
+    <option  >מפעלי הר טוב*</option>
+    <option  >מפעלי חבל מודיעים</option>
+    <option  >מפעלי חפר</option>
+    <option  >מפעלי יזרעאל* (העמק)</option>
+    <option  >מפעלי ים המלח(סדום)</option>
+    <option  >מפעלי ים המלח*</option>
+    <option  >מפעלי כנות</option>
+    <option  >מפעלי מישור רותם</option>
+    <option  >מפעלי מעון</option>
+    <option  >מפעלי מעון*</option>
+    <option  >מפעלי נחם הרטוב</option>
+    <option  >מפעלי עזה</option>
+    <option  >מפעלי צומת מלאכי</option>
+    <option  >מפעלי צומת מלאכי*</option>
+    <option  >מפעלי צין - ערבה</option>
+    <option  >מפעלי צמח</option>
+    <option  >מפעלי רותם</option>
+    <option  >מפעלי שאן</option>
+    <option  >מפעלי שאן*</option>
+    <option  >מצדות יהודה</option>
+    <option  >מצובה</option>
+    <option  >מצליח</option>
+    <option  >מצפה</option>
+    <option  >מצפה אבי"ב</option>
+    <option  >מצפה אילן</option>
+    <option  >מצפה יריחו</option>
+    <option  >מצפה נטופה</option>
+    <option  >מצפה רמון</option>
+    <option  >מצפה שלם</option>
+    <option  >מצר</option>
+    <option  >מקווה ישראל</option>
+    <option  >מרגליות</option>
+    <option  >מרום גולן</option>
+    <option  >מרחב עם</option>
+    <option  >מרחביה (מושב)</option>
+    <option  >מרחביה (קיבוץ)</option>
+    <option  >מרכז אזורי כדורי</option>
+    <option  >מרכז אזורי מרום הגליל</option>
+    <option  >מרכז אזורי משגב</option>
+    <option  >מרכז אזורי שוהם</option>
+    <option  >מרכז כ"ח</option>
+    <option  >מרכז מיר"ב*</option>
+    <option  >מרכז שוהם</option>
+    <option  >מרכז שפירא</option>
+    <option  >מרכז תעשיות שער הנגב</option>
+    <option  >משאבי שדה</option>
+    <option  >משגב דב</option>
+    <option  >משגב עם</option>
+    <option  >משהד</option>
+    <option  >משואה</option>
+    <option  >משואות יצחק</option>
+    <option  >משכיות</option>
+    <option  >משמר איילון</option>
+    <option  >משמר דוד</option>
+    <option  >משמר הירדן</option>
+    <option  >משמר הנגב</option>
+    <option  >משמר העמק</option>
+    <option  >משמר השבעה</option>
+    <option  >משמר השרון</option>
+    <option  >משמרות</option>
+    <option  >משמרת</option>
+    <option  >משען</option>
+    <option  >מתן</option>
+    <option  >מתת</option>
+    <option  >מתתיהו</option>
+    <option  >נאות גולן</option>
+    <option  >נאות הכיכר</option>
+    <option  >נאות מרדכי</option>
+    <option  >נאות סמדר</option>
+    <option  >נאעורה</option>
+    <option  >נבטים</option>
+    <option  >נגבה</option>
+    <option  >נגוהות</option>
+    <option  >נהורה</option>
+    <option  >נהלל</option>
+    <option  >נהרייה</option>
+    <option  >נוב</option>
+    <option  >נוגה</option>
+    <option  >נוה</option>
+    <option  >נווה</option>
+    <option  >נווה אבות</option>
+    <option  >נווה אור</option>
+    <option  >נווה אטי"ב</option>
+    <option  >נווה אילן</option>
+    <option  >נווה אילן*</option>
+    <option  >נווה איתן</option>
+    <option  >נווה אפעל</option>
+    <option  >נווה דניאל</option>
+    <option  >נווה דקלים</option>
+    <option  >נווה זוהר</option>
+    <option  >נווה זיו</option>
+    <option  >נווה חריף</option>
+    <option  >נווה ים</option>
+    <option  >נווה ימין</option>
+    <option  >נווה ירק</option>
+    <option  >נווה מבטח</option>
+    <option  >נווה מיכאל</option>
+    <option  >נווה שלום</option>
+    <option  >נועם</option>
+    <option  >נוף איילון</option>
+    <option  >נופים</option>
+    <option  >נופית</option>
+    <option  >נופך</option>
+    <option  >נוקדים</option>
+    <option  >נורדייה</option>
+    <option  >נורית</option>
+    <option  >נחושה</option>
+    <option  >נחל עוז</option>
+    <option  >נחלה</option>
+    <option  >נחליאל</option>
+    <option  >נחלים</option>
+    <option  >נחם</option>
+    <option  >נחף</option>
+    <option  >נחשולים</option>
+    <option  >נחשון</option>
+    <option  >נחשונים</option>
+    <option  >נטועה</option>
+    <option  >נטור</option>
+    <option  >נטע</option>
+    <option  >נטעים</option>
+    <option  >נטף</option>
+    <option  >ניין</option>
+    <option  >ניל"י</option>
+    <option  >ניסנית</option>
+    <option  >ניצן</option>
+    <option  >ניצן ב'</option>
+    <option  >ניצנה (קהילת חינוך)</option>
+    <option  >ניצני סיני</option>
+    <option  >ניצני עוז</option>
+    <option  >ניצנים</option>
+    <option  >ניר אליהו</option>
+    <option  >ניר בנים</option>
+    <option  >ניר גלים</option>
+    <option  >ניר דוד (תל עמל)</option>
+    <option  >ניר ח"ן</option>
+    <option  >ניר יפה</option>
+    <option  >ניר יצחק</option>
+    <option  >ניר ישראל</option>
+    <option  >ניר משה</option>
+    <option  >ניר עוז</option>
+    <option  >ניר עם</option>
+    <option  >ניר עציון</option>
+    <option  >ניר עקיבא</option>
+    <option  >ניר צבי</option>
+    <option  >נירים</option>
+    <option  >נירית</option>
+    <option  >נירן</option>
+    <option  >נמל תעופה בן-גוריון</option>
+    <option  >נס הרים</option>
+    <option  >נס עמים</option>
+    <option  >נס ציונה</option>
+    <option  >נעורים</option>
+    <option  >נעלה</option>
+    <option  >נעמ"ה</option>
+    <option  >נעמי</option>
+    <option  >נען</option>
+    <option  >נצר חזני</option>
+    <option  >נצר חזני*</option>
+    <option  >נצר סרני</option>
+    <option  >נצרים</option>
+    <option  >נצרת</option>
+    <option  >נצרת עילית</option>
+    <option  >נשר</option>
+    <option  >נתיב הגדוד</option>
+    <option  >נתיב הל"ה</option>
+    <option  >נתיב העשרה</option>
+    <option  >נתיב השיירה</option>
+    <option  >נתיבות</option>
+    <option  >נתניה</option>
+    <option  >סאג'ור</option>
+    <option  >סאסא</option>
+    <option  >סביון*</option>
+    <option  >סגולה</option>
+    <option  >סואעד (חמרייה)*</option>
+    <option  >סולם</option>
+    <option  >סוסיה</option>
+    <option  >סופה</option>
+    <option  >סח'נין</option>
+    <option  >סלמה</option>
+    <option  >סלעית</option>
+    <option  >סמר</option>
+    <option  >סנסנה</option>
+    <option  >סנסנה</option>
+    <option  >סעד</option>
+    <option  >סער</option>
+    <option  >ספיר</option>
+    <option  >סתרייה</option>
+    <option  >עבדון</option>
+    <option  >עברון</option>
+    <option  >עגור</option>
+    <option  >ע'ג'ר</option>
+    <option  >עד הלום</option>
+    <option  >עדי</option>
+    <option  >עדנים</option>
+    <option  >עוזה</option>
+    <option  >עוזייר</option>
+    <option  >עולש</option>
+    <option  >עומר</option>
+    <option  >עופר</option>
+    <option  >עוצם</option>
+    <option  >עזוז</option>
+    <option  >עזר</option>
+    <option  >עזריאל</option>
+    <option  >עזריה</option>
+    <option  >עזריקם</option>
+    <option  >עטרת</option>
+    <option  >עידן</option>
+    <option  >עיילבון</option>
+    <option  >עיינות</option>
+    <option  >עילוט</option>
+    <option  >עין איילה</option>
+    <option  >עין אל-אסד</option>
+    <option  >עין גב</option>
+    <option  >עין גדי</option>
+    <option  >עין דור</option>
+    <option  >עין הבשור</option>
+    <option  >עין הוד</option>
+    <option  >עין החורש</option>
+    <option  >עין המפרץ</option>
+    <option  >עין הנצי"ב</option>
+    <option  >עין העמק</option>
+    <option  >עין השופט</option>
+    <option  >עין השלושה</option>
+    <option  >עין ורד</option>
+    <option  >עין זיוון</option>
+    <option  >עין חוד</option>
+    <option  >עין חצבה</option>
+    <option  >עין חרוד (איחוד)</option>
+    <option  >עין חרוד (מאוחד)</option>
+    <option  >עין יהב</option>
+    <option  >עין יעקב</option>
+    <option  >עין כרם-בי"ס חקלאי</option>
+    <option  >עין כרמל</option>
+    <option  >עין מאהל</option>
+    <option  >עין נקובא</option>
+    <option  >עין עירון</option>
+    <option  >עין צורים</option>
+    <option  >עין קנייא</option>
+    <option  >עין ראפה</option>
+    <option  >עין שמר</option>
+    <option  >עין שריד</option>
+    <option  >עין תמר</option>
+    <option  >עינת</option>
+    <option  >עיר אובות</option>
+    <option  >עיר כרמל</option>
+    <option  >עכו</option>
+    <option  >עלומים</option>
+    <option  >עלי</option>
+    <option  >עלי זהב</option>
+    <option  >עלמה</option>
+    <option  >עלמון</option>
+    <option  >עמוקה</option>
+    <option  >עמינדב</option>
+    <option  >עמיעד</option>
+    <option  >עמיעוז</option>
+    <option  >עמיקם</option>
+    <option  >עמיר</option>
+    <option  >עמנואל</option>
+    <option  >עמקה</option>
+    <option  >ענב</option>
+    <option  >עספיא</option>
+    <option  >עפולה</option>
+    <option  >עפרה</option>
+    <option  >עץ אפרים</option>
+    <option  >עצמון שגב</option>
+    <option  >עראבה</option>
+    <option  >עראמשה*</option>
+    <option  >ערב אל נעים</option>
+    <option  >ערד</option>
+    <option  >ערוגות</option>
+    <option  >ערערה</option>
+    <option  >ערערה-בנגב</option>
+    <option  >עשרת</option>
+    <option  >עתלית</option>
+    <option  >עתניאל</option>
+    <option  >פארן</option>
+    <option  >פארק תמ"ד*</option>
+    <option  >פארק תעשיה חבל מודיעים</option>
+    <option  >פארק תעשיות ספירים</option>
+    <option  >פארק תעשיות עמק חפר</option>
+    <option  >פאת שדה</option>
+    <option  >פדואל</option>
+    <option  >פדויים</option>
+    <option  >פדיה</option>
+    <option  >פוריידיס</option>
+    <option  >פורייה - כפר עבודה</option>
+    <option  >פורייה - נווה עובד</option>
+    <option  >פורייה עילית</option>
+    <option  >פורת</option>
+    <option  >פטיש</option>
+    <option  >פלך</option>
+    <option  >פלמחים</option>
+    <option  >פני חבר</option>
+    <option  >פסגות</option>
+    <option  >פסוטה</option>
+    <option  >פעמי תש"ז</option>
+    <option  >פצאל</option>
+    <option  >פקיעין (בוקייעה)</option>
+    <option  >פקיעין חדשה</option>
+    <option  >פרדס חנה-כרכור</option>
+    <option  >פרדסייה</option>
+    <option  >פרוד</option>
+    <option  >פרזון</option>
+    <option  >פרי גן</option>
+    <option  >פתח תקווה</option>
+    <option  >פתחיה</option>
+    <option  >צאלים</option>
+    <option  >צביה</option>
+    <option  >צבעון</option>
+    <option  >צובה</option>
+    <option  >צוחר</option>
+    <option  >צופייה</option>
+    <option  >צופים</option>
+    <option  >צופית</option>
+    <option  >צופר</option>
+    <option  >צוקי ים</option>
+    <option  >צוקים</option>
+    <option  >צור הדסה</option>
+    <option  >צור יצחק</option>
+    <option  >צור משה</option>
+    <option  >צור נתן</option>
+    <option  >צוריאל</option>
+    <option  >צורית</option>
+    <option  >צורן-קדימה*</option>
+    <option  >ציפורי</option>
+    <option  >צלפון</option>
+    <option  >צמח - מפעלי עמק הירדן</option>
+    <option  >צנדלה</option>
+    <option  >צפרייה</option>
+    <option  >צפרירים</option>
+    <option  >צפת</option>
+    <option  >צרופה</option>
+    <option  >צרעה</option>
+    <option  >קבוצת יבנה</option>
+    <option  >קדומים</option>
+    <option  >קדימה-צורן</option>
+    <option  >קדמה</option>
+    <option  >קדמת צבי</option>
+    <option  >קדר</option>
+    <option  >קדרון</option>
+    <option  >קדרים</option>
+    <option  >קוממיות</option>
+    <option  >קורנית</option>
+    <option  >קטורה</option>
+    <option  >קטיף</option>
+    <option  >קיסריה</option>
+    <option  >קלחים</option>
+    <option  >קליה</option>
+    <option  >קלנסווה</option>
+    <option  >קלע</option>
+    <option  >קציר                </option>
+    <option  >קציר-חריש</option>
+    <option  >קצר א-סר</option>
+    <option  >קצרין</option>
+    <option  >קריית אונו</option>
+    <option  >קריית ארבע</option>
+    <option  >קריית אתא</option>
+    <option  >קריית ביאליק</option>
+    <option  >קריית גת</option>
+    <option  >קריית חינוך מרחבים</option>
+    <option  >קריית חינוך מרחבים*</option>
+    <option  >קריית טבעון</option>
+    <option  >קריית ים</option>
+    <option  >קריית יערים</option>
+    <option  >קריית יערים (מוסד)</option>
+    <option  >קריית מוצקין</option>
+    <option  >קריית מלאכי</option>
+    <option  >קריית נטפים</option>
+    <option  >קריית ענבים</option>
+    <option  >קריית עקרון</option>
+    <option  >קריית שלמה</option>
+    <option  >קריית שמונה</option>
+    <option  >קרית חינוך עזתה</option>
+    <option  >קרית תעופה</option>
+    <option  >קרני שומרון</option>
+    <option  >קשת</option>
+    <option  >ראמה</option>
+    <option  >ראס אל-עין</option>
+    <option  >ראס עלי</option>
+    <option  >ראש העין</option>
+    <option  >ראש פינה</option>
+    <option  >ראש צורים</option>
+    <option  >ראשון לציון</option>
+    <option  >רבבה</option>
+    <option  >רבדים</option>
+    <option  >רביבים</option>
+    <option  >רביד</option>
+    <option  >רגבה</option>
+    <option  >רגבים</option>
+    <option  >רהט</option>
+    <option  >רווחה</option>
+    <option  >רוויה</option>
+    <option  >רוח מדבר</option>
+    <option  >רוחמה</option>
+    <option  >רומאנה</option>
+    <option  >רומת הייב</option>
+    <option  >רועי</option>
+    <option  >רותם</option>
+    <option  >רחוב</option>
+    <option  >רחובות</option>
+    <option  >רחלים</option>
+    <option  >ריחאנייה</option>
+    <option  >ריחן</option>
+    <option  >ריינה</option>
+    <option  >רימונים</option>
+    <option  >רינתיה</option>
+    <option  >רכסים</option>
+    <option  >רם-און</option>
+    <option  >רמות</option>
+    <option  >רמות השבים</option>
+    <option  >רמות מאיר</option>
+    <option  >רמות מנשה</option>
+    <option  >רמות נפתלי</option>
+    <option  >רמלה</option>
+    <option  >רמת אפעל</option>
+    <option  >רמת גן</option>
+    <option  >רמת דוד</option>
+    <option  >רמת הכובש</option>
+    <option  >רמת השופט</option>
+    <option  >רמת השרון</option>
+    <option  >רמת חובב</option>
+    <option  >רמת יוחנן</option>
+    <option  >רמת ישי</option>
+    <option  >רמת מגשימים</option>
+    <option  >רמת פנקס</option>
+    <option  >רמת צבי</option>
+    <option  >רמת רזיאל</option>
+    <option  >רמת רחל</option>
+    <option  >רנן</option>
+    <option  >רעים</option>
+    <option  >רעננה</option>
+    <option  >רפיח ים</option>
+    <option  >רקפת</option>
+    <option  >רשפון</option>
+    <option  >רשפים</option>
+    <option  >רתמים</option>
+    <option  >שא-נור</option>
+    <option  >שאר ישוב</option>
+    <option  >שבי ציון</option>
+    <option  >שבי שומרון</option>
+    <option  >שבלי - אום אל-גנם</option>
+    <option  >שגב</option>
+    <option  >שגב-שלום</option>
+    <option  >שגור*</option>
+    <option  >שדה אילן</option>
+    <option  >שדה אליהו</option>
+    <option  >שדה אליעזר</option>
+    <option  >שדה בוקר</option>
+    <option  >שדה דוד</option>
+    <option  >שדה ורבורג</option>
+    <option  >שדה יואב</option>
+    <option  >שדה יעקב</option>
+    <option  >שדה יצחק</option>
+    <option  >שדה משה</option>
+    <option  >שדה נחום</option>
+    <option  >שדה נחמיה</option>
+    <option  >שדה ניצן</option>
+    <option  >שדה עוזיהו</option>
+    <option  >שדה צבי</option>
+    <option  >שדות ים</option>
+    <option  >שדות מיכה</option>
+    <option  >שדי אברהם</option>
+    <option  >שדי חמד</option>
+    <option  >שדי תרומות</option>
+    <option  >שדמה</option>
+    <option  >שדמות דבורה</option>
+    <option  >שדמות מחולה</option>
+    <option  >שדרות</option>
+    <option  >שואבה</option>
+    <option  >שובה</option>
+    <option  >שובל</option>
+    <option  >שוהם</option>
+    <option  >שומרה</option>
+    <option  >שומרייה</option>
+    <option  >שוקדה</option>
+    <option  >שורש</option>
+    <option  >שורשים</option>
+    <option  >שושנת העמקים</option>
+    <option  >שזור</option>
+    <option  >שחר</option>
+    <option  >שחרות</option>
+    <option  >שיבולים</option>
+    <option  >שיטים</option>
+    <option  >שייח' דנון</option>
+    <option  >שילה</option>
+    <option  >שילת</option>
+    <option  >שכניה</option>
+    <option  >שלווה</option>
+    <option  >שלווה במדבר</option>
+    <option  >שלוחות</option>
+    <option  >שלומי</option>
+    <option  >שלומית</option>
+    <option  >שלומציון</option>
+    <option  >שליו</option>
+    <option  >שמיר</option>
+    <option  >שמעה</option>
+    <option  >שמרת</option>
+    <option  >שמשית</option>
+    <option  >שני</option>
+    <option  >שניר</option>
+    <option  >שעב</option>
+    <option  >שעל</option>
+    <option  >שעלבים</option>
+    <option  >שער אפרים</option>
+    <option  >שער הגולן</option>
+    <option  >שער העמקים</option>
+    <option  >שער מנשה</option>
+    <option  >שערי אברהם</option>
+    <option  >שערי תקווה</option>
+    <option  >שפיים</option>
+    <option  >שפיר</option>
+    <option  >שפר</option>
+    <option  >שפרעם</option>
+    <option  >שקד</option>
+    <option  >שקף</option>
+    <option  >שרונה</option>
+    <option  >שריגים (לי-און)</option>
+    <option  >שריד</option>
+    <option  >שרשרת</option>
+    <option  >שתולה</option>
+    <option  >שתולים</option>
+    <option  >תאשור</option>
+    <option  >תדהר</option>
+    <option  >תובל</option>
+    <option  >תומר</option>
+    <option  >תושייה</option>
+    <option  >תימורים</option>
+    <option  >תירוש</option>
+    <option  >תל אביב -יפו</option>
+    <option  >תל חי (מכללה)</option>
+    <option  >תל יוסף</option>
+    <option  >תל יצחק</option>
+    <option  >תל מונד</option>
+    <option  >תל עדשים</option>
+    <option  >תל קציר</option>
+    <option  >תל שבע</option>
+    <option  >תל תאומים</option>
+    <option  >תל-חי</option>
+    <option  >תלם</option>
+    <option  >תלמי אליהו</option>
+    <option  >תלמי אלעזר</option>
+    <option  >תלמי ביל"ו</option>
+    <option  >תלמי יוסף</option>
+    <option  >תלמי יחיאל</option>
+    <option  >תלמי יפה</option>
+    <option  >תלמים</option>
+    <option  >תמרת</option>
+    <option  >תנובות</option>
+    <option  >תעוז</option>
+    <option  >תעשיון בינימין*</option>
+    <option  >תעשיון בר-לב</option>
+    <option  >תעשיון גליל תחתון</option>
+    <option  >תעשיון דלתון</option>
+    <option  >תעשיון השרון</option>
+    <option  >תעשיון חבל יבנה</option>
+    <option  >תעשיון חוף יבנה</option>
+    <option  >תעשיון חצב*</option>
+    <option  >תעשיון מבצע*</option>
+    <option  >תעשיון מיתרים</option>
+    <option  >תעשיון צריפין</option>
+    <option  >תעשיון קש"ת*</option>
+    <option  >תעשיון ראם*</option>
+    <option  >תעשיון שח"ק</option>
+    <option  >תעשיות גליל תחתון</option>
+    <option  >תעשיות ספירים</option>
+    <option  >תפרח</option>
+    <option  >תקומה</option>
+    <option  >תקוע</option>
+    <option  >תרבין א-צאנע (יישוב)*</option>
+    <option  >תרדיון</option>
+    <option  >תרום</option>
+    <option  >אבו גוש</option>
+    <option  >אבו סנאן</option>
+    <option  >אבו קורינאת (יישוב)</option>
+    <option  >אבו תלול</option>
+    <option  >אבטין</option>
+    <option  >אבטליון</option>
+    <option  >אביאל</option>
+    <option  >אביבים</option>
+    <option  >אביגדור</option>
+    <option  >אביחיל</option>
+    <option  >אביטל</option>
+    <option  >אביעזר</option>
+    <option  >אבירים</option>
+    <option  >אבן יהודה</option>
+    <option  >אבן מנחם</option>
+    <option  >אבן ספיר</option>
+    <option  >אבן שמואל</option>
+    <option  >אבני איתן</option>
+    <option  >אבני חפץ</option>
+    <option  >אבנת</option>
+    <option  >אבשלום</option>
+    <option  >אדורה</option>
+    <option  >אדירים</option>
+    <option  >אדמית</option>
+    <option  >אדרת</option>
+    <option  >אודים</option>
+    <option  >אודם</option>
+    <option  >אוהד</option>
+    <option  >אום אל-פחם</option>
+    <option  >אום אל-קוטוף</option>
+    <option  >אום בטין</option>
+    <option  >אומן</option>
+    <option  >אומץ</option>
+    <option  >אופקים</option>
+    <option  >אור הגנוז</option>
+    <option  >אור הנר</option>
+    <option  >אור יהודה</option>
+    <option  >אור עקיבא</option>
+    <option  >אורה</option>
+    <option  >אורון</option>
+    <option  >אורות</option>
+    <option  >אורטל</option>
+    <option  >אורים</option>
+    <option  >אורנים</option>
+    <option  >אורנית</option>
+    <option  >אושה</option>
+    <option  >אזור</option>
+    <option  >אזור תעסוקה מיתרים*</option>
+    <option  >אזור תעסוקה משגב</option>
+    <option  >אזור תעסוקה משגב(תרדיון)</option>
+    <option  >אזור תעשייה אכזיב (מילואות)</option>
+    <option  >אזור תעשייה נעמן (מילואות)</option>
+    <option  >אחווה</option>
+    <option  >אחוזם</option>
+    <option  >אחוזת ברק</option>
+    <option  >אחיהוד</option>
+    <option  >אחיטוב</option>
+    <option  >אחיסמך</option>
+    <option  >אחיעזר</option>
+    <option  >איבים</option>
+    <option  >אייל</option>
+    <option  >איילת השחר</option>
+    <option  >אילון</option>
+    <option  >אילון תבור*</option>
+    <option  >אילות</option>
+    <option  >אילנייה</option>
+    <option  >אילת</option>
+    <option  >אירוס</option>
+    <option  >איתמר</option>
+    <option  >איתן</option>
+    <option  >איתנים</option>
+    <option  >אכסאל</option>
+    <option  >אל סייד</option>
+    <option  >אל -עזי</option>
+    <option  >אל -עריאן</option>
+    <option  >אל -רום</option>
+    <option  >אלומה</option>
+    <option  >אלומות</option>
+    <option  >אלון הגליל</option>
+    <option  >אלון מורה</option>
+    <option  >אלון שבות</option>
+    <option  >אלוני אבא</option>
+    <option  >אלוני הבשן</option>
+    <option  >אלוני יצחק</option>
+    <option  >אלונים</option>
+    <option  >אלי סיני</option>
+    <option  >אליאב</option>
+    <option  >אליכין</option>
+    <option  >אלי-עד</option>
+    <option  >אליפז</option>
+    <option  >אליפלט</option>
+    <option  >אליקים</option>
+    <option  >אלישיב</option>
+    <option  >אלישמע</option>
+    <option  >אלמגור</option>
+    <option  >אלמוג</option>
+    <option  >אלעד</option>
+    <option  >אלעזר</option>
+    <option  >אלפי מנשה</option>
+    <option  >אלקוש</option>
+    <option  >אלקנה</option>
+    <option  >אמונים</option>
+    <option  >אמירים</option>
+    <option  >אמנון</option>
+    <option  >אמציה</option>
+    <option  >אניעם</option>
+    <option  >אספר</option>
+    <option  >אעבלין</option>
+    <option  >אפיק</option>
+    <option  >אפיקים</option>
+    <option  >אפעל-מרכז סמינריוני</option>
+    <option  >אפק</option>
+    <option  >אפרת</option>
+    <option  >אפרתה</option>
+    <option  >ארבל</option>
+    <option  >ארגמן</option>
+    <option  >ארז</option>
+    <option  >אריאל</option>
+    <option  >ארסוף</option>
+    <option  >אשבול</option>
+    <option  >אשבל</option>
+    <option  >אשדוד</option>
+    <option  >אשדות יעקב (איחוד)</option>
+    <option  >אשדות יעקב (מאוחד)</option>
+    <option  >אשחר</option>
+    <option  >אשכולות</option>
+    <option  >אשל הנשיא</option>
+    <option  >אשלים</option>
+    <option  >אשקלון</option>
+    <option  >אשרת</option>
+    <option  >אשתאול</option>
+    <option  >באקה אל-גרביה</option>
+    <option  >באקה-ג'ת*</option>
+    <option  >באר אורה</option>
+    <option  >באר גנים</option>
+    <option  >באר טוביה</option>
+    <option  >באר יעקב</option>
+    <option  >באר מילכה</option>
+    <option  >באר שבע</option>
+    <option  >בארות יצחק</option>
+    <option  >בארותיים</option>
+    <option  >בארי</option>
+    <option  >בדולח</option>
+    <option  >בוסתן הגליל</option>
+    <option  >בועיינה-נוג'ידאת</option>
+    <option  >בוקעאתא</option>
+    <option  >בורגתה</option>
+    <option  >בחן</option>
+    <option  >בטחה</option>
+    <option  >בי"ס אזורי מקיף (אשר)</option>
+    <option  >ביצרון</option>
+    <option  >ביר אל-מכסור</option>
+    <option  >ביר הדאג'</option>
+    <option  >בירייה</option>
+    <option  >בית אורן</option>
+    <option  >בית אל</option>
+    <option  >בית אלעזרי</option>
+    <option  >בית אלפא</option>
+    <option  >בית אריה</option>
+    <option  >בית ברל</option>
+    <option  >בית גוברין</option>
+    <option  >בית גמליאל</option>
+    <option  >בית ג'ן</option>
+    <option  >בית דגן</option>
+    <option  >בית הגדי</option>
+    <option  >בית הלוי</option>
+    <option  >בית הלל</option>
+    <option  >בית העמק</option>
+    <option  >בית הערבה</option>
+    <option  >בית השיטה</option>
+    <option  >בית זיד</option>
+    <option  >בית זית</option>
+    <option  >בית זרע</option>
+    <option  >בית חולים פוריה</option>
+    <option  >בית חורון</option>
+    <option  >בית חירות</option>
+    <option  >בית חלקיה</option>
+    <option  >בית חנן</option>
+    <option  >בית חנניה</option>
+    <option  >בית חשמונאי</option>
+    <option  >בית יהושע</option>
+    <option  >בית יוסף</option>
+    <option  >בית ינאי</option>
+    <option  >בית יצחק-שער חפר</option>
+    <option  >בית לחם הגלילית</option>
+    <option  >בית מאיר</option>
+    <option  >בית נחמיה</option>
+    <option  >בית ניר</option>
+    <option  >בית נקופה</option>
+    <option  >בית עובד</option>
+    <option  >בית עוזיאל</option>
+    <option  >בית עזרא</option>
+    <option  >בית עריף</option>
+    <option  >בית צבי</option>
+    <option  >בית קמה</option>
+    <option  >בית קשת</option>
+    <option  >בית רבן</option>
+    <option  >בית רימון</option>
+    <option  >בית שאן</option>
+    <option  >בית שמש</option>
+    <option  >בית שערים</option>
+    <option  >בית שקמה</option>
+    <option  >ביתן אהרן</option>
+    <option  >ביתר עילית</option>
+    <option  >בלפוריה</option>
+    <option  >בן זכאי</option>
+    <option  >בן עמי</option>
+    <option  >בן שמן (כפר נוער)</option>
+    <option  >בן שמן (מושב)</option>
+    <option  >בני ברק</option>
+    <option  >בני דקלים</option>
+    <option  >בני דרום</option>
+    <option  >בני דרור</option>
+    <option  >בני יהודה</option>
+    <option  >בני נצרים</option>
+    <option  >בני עטרות</option>
+    <option  >בני עי"ש</option>
+    <option  >בני עצמון</option>
+    <option  >בני ציון</option>
+    <option  >בני ראם</option>
+    <option  >בניה</option>
+    <option  >בנימינה-גבעת עדה*</option>
+    <option  >בסמ"ה</option>
+    <option  >בסמת טבעון</option>
+    <option  >בענה</option>
+    <option  >בצרה</option>
+    <option  >בצת</option>
+    <option  >בקוע</option>
+    <option  >בקעות</option>
+    <option  >בר גיורא</option>
+    <option  >בר יוחאי</option>
+    <option  >ברוכין</option>
+    <option  >ברור חיל</option>
+    <option  >ברוש</option>
+    <option  >ברכה</option>
+    <option  >ברכיה</option>
+    <option  >בר-לב</option>
+    <option  >ברעם</option>
+    <option  >ברק</option>
+    <option  >ברקאי</option>
+    <option  >ברקן</option>
+    <option  >ברקת</option>
+    <option  >בת הדר</option>
+    <option  >בת חן</option>
+    <option  >בת חפר</option>
+    <option  >בת חצור</option>
+    <option  >בת ים</option>
+    <option  >בת עין</option>
+    <option  >בת שלמה</option>
+    <option  >בתי זיקוק - קישון</option>
+    <option  >בתי זיקוק - קישון*</option>
+    <option  >בתי ספר של מרחבים*</option>
+    <option  >גאולי תימן</option>
+    <option  >גאולים</option>
+    <option  >גאליה</option>
+    <option  >גבולות</option>
+    <option  >גבים</option>
+    <option  >גבע</option>
+    <option  >גבע בנימין</option>
+    <option  >גבע כרמל</option>
+    <option  >גבעולים</option>
+    <option  >גבעון החדשה</option>
+    <option  >גבעות בר</option>
+    <option  >גבעת אבני</option>
+    <option  >גבעת אלה</option>
+    <option  >גבעת ברנר</option>
+    <option  >גבעת השלושה</option>
+    <option  >גבעת זאב</option>
+    <option  >גבעת ח"ן</option>
+    <option  >גבעת חביבה</option>
+    <option  >גבעת חיים (איחוד)</option>
+    <option  >גבעת חיים (מאוחד)</option>
+    <option  >גבעת יואב</option>
+    <option  >גבעת יערים</option>
+    <option  >גבעת ישעיהו</option>
+    <option  >גבעת כ"ח</option>
+    <option  >גבעת ניל"י</option>
+    <option  >גבעת עוז</option>
+    <option  >גבעת שמואל</option>
+    <option  >גבעת שמש</option>
+    <option  >גבעת שפירא</option>
+    <option  >גבעתי</option>
+    <option  >גבעתיים</option>
+    <option  >גברעם</option>
+    <option  >גבת</option>
+    <option  >גדות</option>
+    <option  >גדיד</option>
+    <option  >ג'דיידה-מכר</option>
+    <option  >גדיש</option>
+    <option  >גדעונה</option>
+    <option  >גדרה</option>
+    <option  >ג'ולס</option>
+    <option  >גונן</option>
+    <option  >גורן</option>
+    <option  >גורנות הגליל</option>
+    <option  >גזית</option>
+    <option  >גזר</option>
+    <option  >גיאה</option>
+    <option  >גיבתון</option>
+    <option  >גיזו</option>
+    <option  >גילון</option>
+    <option  >גילת</option>
+    <option  >גינוסר</option>
+    <option  >גיניגר</option>
+    <option  >גינתון</option>
+    <option  >גיתה</option>
+    <option  >גיתית</option>
+    <option  >גלאון</option>
+    <option  >ג'לג'וליה</option>
+    <option  >גלגל</option>
+    <option  >גליל ים</option>
+    <option  >גלעד (אבן יצחק)</option>
+    <option  >גמזו</option>
+    <option  >גן אור</option>
+    <option  >גן הדרום</option>
+    <option  >גן השומרון</option>
+    <option  >גן חיים</option>
+    <option  >גן יאשיה</option>
+    <option  >גן יבנה</option>
+    <option  >גן נר</option>
+    <option  >גן שורק</option>
+    <option  >גן שלמה</option>
+    <option  >גן שמואל</option>
+    <option  >גנות</option>
+    <option  >גנות הדר</option>
+    <option  >גני הדר</option>
+    <option  >גני טל</option>
+    <option  >גני טל* </option>
+    <option  >גני יוחנן</option>
+    <option  >גני עם</option>
+    <option  >גני תקווה</option>
+    <option  >גנים</option>
+    <option  >ג'סר א-זרקא</option>
+    <option  >געש</option>
+    <option  >געתון</option>
+    <option  >גפן</option>
+    <option  >גרופית</option>
+    <option  >ג'ש (גוש חלב)</option>
+    <option  >גשור</option>
+    <option  >גשר</option>
+    <option  >גשר הזיו</option>
+    <option  >ג'ת</option>
+    <option  >גת (קיבוץ)</option>
+    <option  >גת רימון</option>
+    <option  >דאלית אל-כרמל</option>
+    <option  >דאלית אל-כרמל-עספיא*</option>
+    <option  >דבורה</option>
+    <option  >דבורייה</option>
+    <option  >דבירה</option>
+    <option  >דברת</option>
+    <option  >דגניה א'</option>
+    <option  >דגניה ב'</option>
+    <option  >דוב"ב</option>
+    <option  >דוגית</option>
+    <option  >דולב</option>
+    <option  >דור</option>
+    <option  >דורות</option>
+    <option  >דחי</option>
+    <option  >דייר אל-אסד</option>
+    <option  >דייר חנא</option>
+    <option  >דייר ראפאת</option>
+    <option  >דימונה</option>
+    <option  >דישון</option>
+    <option  >דלייה</option>
+    <option  >דלתון</option>
+    <option  >דלתון</option>
+    <option  >דמיידה</option>
+    <option  >דן</option>
+    <option  >דפנה</option>
+    <option  >דקל</option>
+    <option  >דריג'את</option>
+    <option  >האון</option>
+    <option  >הבונים</option>
+    <option  >הגושרים</option>
+    <option  >הדר עם</option>
+    <option  >הוד השרון</option>
+    <option  >הודיות</option>
+    <option  >הודייה</option>
+    <option  >הושעיה</option>
+    <option  >הזורע</option>
+    <option  >הזורעים</option>
+    <option  >החותרים</option>
+    <option  >היוגב</option>
+    <option  >הילה</option>
+    <option  >המעפיל</option>
+    <option  >המרכז למחקר-נחל שורק</option>
+    <option  >הסוללים</option>
+    <option  >העוגן</option>
+    <option  >הר אדר</option>
+    <option  >הר גילה</option>
+    <option  >הר עמשא</option>
+    <option  >הראל</option>
+    <option  >הרדוף</option>
+    <option  >הרצלייה</option>
+    <option  >הררית</option>
+    <option  >ורד יריחו</option>
+    <option  >ורדון</option>
+    <option  >זבדיאל</option>
+    <option  >זוהר</option>
+    <option  >זיקים</option>
+    <option  >זיתן</option>
+    <option  >זכרון יעקב</option>
+    <option  >זכריה</option>
+    <option  >זמר</option>
+    <option  >זמרת</option>
+    <option  >זנוח</option>
+    <option  >זרועה</option>
+    <option  >זרזיר</option>
+    <option  >זרחיה</option>
+    <option  >חבצלת השרון</option>
+    <option  >חבר</option>
+    <option  >חגור</option>
+    <option  >חגי</option>
+    <option  >חגלה</option>
+    <option  >חדיד</option>
+    <option  >חד-נס</option>
+    <option  >חדרה</option>
+    <option  >ח'ואלד</option>
+    <option  >חולדה</option>
+    <option  >חולון</option>
+    <option  >חולית</option>
+    <option  >חולתה</option>
+    <option  >חומש</option>
+    <option  >חוסן</option>
+    <option  >חוסנייה</option>
+    <option  >חופית</option>
+    <option  >חוקוק</option>
+    <option  >חורה</option>
+    <option  >חורפיש</option>
+    <option  >חורשים</option>
+    <option  >חזון</option>
+    <option  >חיבת ציון</option>
+    <option  >חיננית</option>
+    <option  >חיפה</option>
+    <option  >חירות</option>
+    <option  >חלוץ</option>
+    <option  >חלמיש</option>
+    <option  >חלץ</option>
+    <option  >חמאם</option>
+    <option  >חמד</option>
+    <option  >חמדיה</option>
+    <option  >חמדת</option>
+    <option  >חמרה</option>
+    <option  >חניאל</option>
+    <option  >חניתה</option>
+    <option  >חנתון</option>
+    <option  >חספין</option>
+    <option  >חפץ חיים</option>
+    <option  >חפצי-בה</option>
+    <option  >חצב</option>
+    <option  >חצבה</option>
+    <option  >חצור הגלילית</option>
+    <option  >חצור-אשדוד</option>
+    <option  >חצרים</option>
+    <option  >חרב לאת</option>
+    <option  >חרוצים</option>
+    <option  >חריש</option>
+    <option  >חרמש</option>
+    <option  >חרשים</option>
+    <option  >חשמונאים</option>
+    <option  >טבריה</option>
+    <option  >טובא-זנגרייה</option>
+    <option  >טורעאן</option>
+    <option  >טייבה</option>
+    <option  >טייבה (בעמק)</option>
+    <option  >טירה</option>
+    <option  >טירת יהודה</option>
+    <option  >טירת כרמל</option>
+    <option  >טירת צבי</option>
+    <option  >טל שחר</option>
+    <option  >טל-אל</option>
+    <option  >טללים</option>
+    <option  >טלמון</option>
+    <option  >טמרה</option>
+    <option  >טמרה (יזרעאל)</option>
+    <option  >טנא</option>
+    <option  >טפחות</option>
+    <option  >יאנוח-ג'ת</option>
+    <option  >יבול</option>
+    <option  >יבנאל</option>
+    <option  >יבנה</option>
+    <option  >יגור</option>
+    <option  >יגל</option>
+    <option  >יד בנימין</option>
+    <option  >יד השמונה</option>
+    <option  >יד חנה</option>
+    <option  >יד מרדכי</option>
+    <option  >יד נתן</option>
+    <option  >יד רמב"ם</option>
+    <option  >ידידה</option>
+    <option  >יהוד</option>
+    <option  >יהוד-נווה אפרים*</option>
+    <option  >יהל</option>
+    <option  >יובל</option>
+    <option  >יובלים</option>
+    <option  >יודפת</option>
+    <option  >יונתן</option>
+    <option  >יושיביה</option>
+    <option  >יזרעאל</option>
+    <option  >יחיעם</option>
+    <option  >יטבתה</option>
+    <option  >ייט"ב</option>
+    <option  >יכיני</option>
+    <option  >ים המלח - בתי מלון</option>
+    <option  >ינוב</option>
+    <option  >ינון</option>
+    <option  >יסוד המעלה</option>
+    <option  >יסודות</option>
+    <option  >יסעור</option>
+    <option  >יעד</option>
+    <option  >יעל</option>
+    <option  >יעף</option>
+    <option  >יערה</option>
+    <option  >יפיע</option>
+    <option  >יפית</option>
+    <option  >יפעת</option>
+    <option  >יפתח</option>
+    <option  >יצהר</option>
+    <option  >יציץ</option>
+    <option  >יקום</option>
+    <option  >יקיר</option>
+    <option  >יקנעם (מושבה)</option>
+    <option  >יקנעם עילית</option>
+    <option  >יראון</option>
+    <option  >ירדנה</option>
+    <option  >ירוחם</option>
+    <option  >ירושלים</option>
+    <option  >ירחיב</option>
+    <option  >ירכא</option>
+    <option  >ירקונה</option>
+    <option  >ישע</option>
+    <option  >ישעי</option>
+    <option  >ישרש</option>
+    <option  >יתד</option>
+    <option  >כאבול</option>
+    <option  >כאוכב אבו אל-היג'א</option>
+    <option  >כברי</option>
+    <option  >כדורי</option>
+    <option  >כדים</option>
+    <option  >כדיתה</option>
+    <option  >כוכב השחר</option>
+    <option  >כוכב יאיר</option>
+    <option  >כוכב יעקב</option>
+    <option  >כוכב מיכאל</option>
+    <option  >כורזים</option>
+    <option  >כחל</option>
+    <option  >כחלה</option>
+    <option  >כיסופים</option>
+    <option  >כישור</option>
+    <option  >כליל</option>
+    <option  >כלנית</option>
+    <option  >כמאנה</option>
+    <option  >כמהין</option>
+    <option  >כמון</option>
+    <option  >כנות</option>
+    <option  >כנף</option>
+    <option  >כנרת (מושבה)</option>
+    <option  >כנרת (קבוצה)</option>
+    <option  >כסיפה</option>
+    <option  >כסלון</option>
+    <option  >כסרא-סמיע</option>
+    <option  >כעביה-טבאש-חג'אג'רה</option>
+    <option  >כפר אביב</option>
+    <option  >כפר אדומים</option>
+    <option  >כפר אוריה</option>
+    <option  >כפר אז"ר</option>
+    <option  >כפר אחים</option>
+    <option  >כפר ביאליק</option>
+    <option  >כפר ביל"ו</option>
+    <option  >כפר בלום</option>
+    <option  >כפר בן נון</option>
+    <option  >כפר ברא</option>
+    <option  >כפר ברוך</option>
+    <option  >כפר גדעון</option>
+    <option  >כפר גלים</option>
+    <option  >כפר גליקסון</option>
+    <option  >כפר גלעדי</option>
+    <option  >כפר דניאל</option>
+    <option  >כפר דרום</option>
+    <option  >כפר האורנים</option>
+    <option  >כפר החורש</option>
+    <option  >כפר המכבי</option>
+    <option  >כפר הנגיד</option>
+    <option  >כפר הנוער הדתי</option>
+    <option  >כפר הנשיא</option>
+    <option  >כפר הס</option>
+    <option  >כפר הרא"ה</option>
+    <option  >כפר הרי"ף</option>
+    <option  >כפר ויתקין</option>
+    <option  >כפר ורבורג</option>
+    <option  >כפר ורדים</option>
+    <option  >כפר זוהרים</option>
+    <option  >כפר זיתים</option>
+    <option  >כפר חב"ד</option>
+    <option  >כפר חושן</option>
+    <option  >כפר חיטים</option>
+    <option  >כפר חיים</option>
+    <option  >כפר חנניה</option>
+    <option  >כפר חסידים א'</option>
+    <option  >כפר חסידים ב'</option>
+    <option  >כפר חרוב</option>
+    <option  >כפר טרומן</option>
+    <option  >כפר יאסיף</option>
+    <option  >כפר ידידיה</option>
+    <option  >כפר יהושע</option>
+    <option  >כפר יונה</option>
+    <option  >כפר יחזקאל</option>
+    <option  >כפר יעבץ</option>
+    <option  >כפר כמא</option>
+    <option  >כפר כנא</option>
+    <option  >כפר מונש</option>
+    <option  >כפר מימון</option>
+    <option  >כפר מל"ל</option>
+    <option  >כפר מנדא</option>
+    <option  >כפר מנחם</option>
+    <option  >כפר מסריק</option>
+    <option  >כפר מצר</option>
+    <option  >כפר מרדכי</option>
+    <option  >כפר נטר</option>
+    <option  >כפר סאלד</option>
+    <option  >כפר סבא</option>
+    <option  >כפר סילבר</option>
+    <option  >כפר סירקין</option>
+    <option  >כפר עבודה</option>
+    <option  >כפר עזה</option>
+    <option  >כפר עציון</option>
+    <option  >כפר פינס</option>
+    <option  >כפר קאסם</option>
+    <option  >כפר קיש</option>
+    <option  >כפר קרע</option>
+    <option  >כפר ראש הנקרה</option>
+    <option  >כפר רוזנואלד (זרעית)</option>
+    <option  >כפר רופין</option>
+    <option  >כפר רות</option>
+    <option  >כפר שמאי</option>
+    <option  >כפר שמואל</option>
+    <option  >כפר שמריהו</option>
+    <option  >כפר תבור</option>
+    <option  >כפר תפוח</option>
+    <option  >כרכום</option>
+    <option  >כרם בן זמרה</option>
+    <option  >כרם בן שמן</option>
+    <option  >כרם יבנה (ישיבה)</option>
+    <option  >כרם מהר"ל</option>
+    <option  >כרם שלום</option>
+    <option  >כרמי יוסף</option>
+    <option  >כרמי צור</option>
+    <option  >כרמיאל</option>
+    <option  >כרמייה</option>
+    <option  >כרמים</option>
+    <option  >כרמל</option>
+    <option  >לבון</option>
+    <option  >לביא</option>
+    <option  >לבנים</option>
+    <option  >להב</option>
+    <option  >להבות הבשן</option>
+    <option  >להבות חביבה</option>
+    <option  >להבים</option>
+    <option  >לוד</option>
+    <option  >לוזית</option>
+    <option  >לוחמי הגיטאות</option>
+    <option  >לוטם</option>
+    <option  >לוטן</option>
+    <option  >לימן</option>
+    <option  >לכיש</option>
+    <option  >לפיד</option>
+    <option  >לפידות</option>
+    <option  >לקיה</option>
+    <option  >מאור</option>
+    <option  >מאיר שפיה</option>
+    <option  >מבוא ביתר</option>
+    <option  >מבוא דותן</option>
+    <option  >מבוא חורון</option>
+    <option  >מבוא חמה</option>
+    <option  >מבוא מודיעים</option>
+    <option  >מבואות ים</option>
+    <option  >מבועים</option>
+    <option  >מבטחים</option>
+    <option  >מבקיעים</option>
+    <option  >מבשרת ציון</option>
+    <option  >מגאר</option>
+    <option  >מג'ד אל-כרום</option>
+    <option  >מגדים</option>
+    <option  >מגדל</option>
+    <option  >מגדל העמק</option>
+    <option  >מגדל עוז</option>
+    <option  >מג'דל שמס</option>
+    <option  >מגדל תפן</option>
+    <option  >מגדלים</option>
+    <option  >מגידו</option>
+    <option  >מגל</option>
+    <option  >מגן</option>
+    <option  >מגן שאול</option>
+    <option  >מגשימים</option>
+    <option  >מדרך עוז</option>
+    <option  >מדרשת בן גוריון</option>
+    <option  >מדרשת רופין</option>
+    <option  >מודיעין עילית</option>
+    <option  >מודיעין-מכבים-רעות*</option>
+    <option  >מולדה*</option>
+    <option  >מולדת</option>
+    <option  >מוצא עילית</option>
+    <option  >מוקייבלה</option>
+    <option  >מורג</option>
+    <option  >מורן</option>
+    <option  >מורשת</option>
+    <option  >מזור</option>
+    <option  >מזכרת בתיה</option>
+    <option  >מזרע</option>
+    <option  >מזרעה</option>
+    <option  >מחולה</option>
+    <option  >מחנה יבור</option>
+    <option  >מחנה יתיר</option>
+    <option  >מחניים</option>
+    <option  >מחסיה</option>
+    <option  >מטולה</option>
+    <option  >מטע</option>
+    <option  >מי עמי</option>
+    <option  >מיטב</option>
+    <option  >מייסר</option>
+    <option  >מיצר</option>
+    <option  >מירב</option>
+    <option  >מירון</option>
+    <option  >מישר</option>
+    <option  >מיתר</option>
+    <option  >מכורה</option>
+    <option  >מכחול</option>
+    <option  >מכמורת</option>
+    <option  >מכמנים</option>
+    <option  >מלאה</option>
+    <option  >מלילות</option>
+    <option  >מלכייה</option>
+    <option  >מלכישוע</option>
+    <option  >מנוחה</option>
+    <option  >מנוף</option>
+    <option  >מנות</option>
+    <option  >מנחמיה</option>
+    <option  >מנרה</option>
+    <option  >מנשית זבדה</option>
+    <option  >מסד</option>
+    <option  >מסדה</option>
+    <option  >מסילות</option>
+    <option  >מסילת ציון</option>
+    <option  >מסלול</option>
+    <option  >מסעדה</option>
+    <option  >מעברות</option>
+    <option  >מעגלים</option>
+    <option  >מעגן</option>
+    <option  >מעגן מיכאל</option>
+    <option  >מעוז חיים</option>
+    <option  >מעון</option>
+    <option  >מעונה</option>
+    <option  >מעיין ברוך</option>
+    <option  >מעיין צבי</option>
+    <option  >מעיליא</option>
+    <option  >מעלה אדומים</option>
+    <option  >מעלה אפרים</option>
+    <option  >מעלה גלבוע</option>
+    <option  >מעלה גמלא</option>
+    <option  >מעלה החמישה</option>
+    <option  >מעלה לבונה</option>
+    <option  >מעלה מכמש</option>
+    <option  >מעלה עירון</option>
+    <option  >מעלה עמוס</option>
+    <option  >מעלה שומרון</option>
+    <option  >מעלות-תרשיחא</option>
+    <option  >מענית</option>
+    <option  >מעש</option>
+    <option  >מפלסים</option>
+    <option  >מפעלי אבשלו"ם</option>
+    <option  >מפעלי אבשלום</option>
+    <option  >מפעלי ברנר</option>
+    <option  >מפעלי ברקן</option>
+    <option  >מפעלי ברקן*</option>
+    <option  >מפעלי גלבוע</option>
+    <option  >מפעלי גליל עליון</option>
+    <option  >מפעלי גרנות</option>
+    <option  >מפעלי העמק (יזרעאל)</option>
+    <option  >מפעלי הר טוב*</option>
+    <option  >מפעלי חבל מודיעים</option>
+    <option  >מפעלי חפר</option>
+    <option  >מפעלי יזרעאל* (העמק)</option>
+    <option  >מפעלי ים המלח(סדום)</option>
+    <option  >מפעלי ים המלח*</option>
+    <option  >מפעלי כנות</option>
+    <option  >מפעלי מישור רותם</option>
+    <option  >מפעלי מעון</option>
+    <option  >מפעלי מעון*</option>
+    <option  >מפעלי נחם הרטוב</option>
+    <option  >מפעלי עזה</option>
+    <option  >מפעלי צומת מלאכי</option>
+    <option  >מפעלי צומת מלאכי*</option>
+    <option  >מפעלי צין - ערבה</option>
+    <option  >מפעלי צמח</option>
+    <option  >מפעלי רותם</option>
+    <option  >מפעלי שאן</option>
+    <option  >מפעלי שאן*</option>
+    <option  >מצדות יהודה</option>
+    <option  >מצובה</option>
+    <option  >מצליח</option>
+    <option  >מצפה</option>
+    <option  >מצפה אבי"ב</option>
+    <option  >מצפה אילן</option>
+    <option  >מצפה יריחו</option>
+    <option  >מצפה נטופה</option>
+    <option  >מצפה רמון</option>
+    <option  >מצפה שלם</option>
+    <option  >מצר</option>
+    <option  >מקווה ישראל</option>
+    <option  >מרגליות</option>
+    <option  >מרום גולן</option>
+    <option  >מרחב עם</option>
+    <option  >מרחביה (מושב)</option>
+    <option  >מרחביה (קיבוץ)</option>
+    <option  >מרכז אזורי כדורי</option>
+    <option  >מרכז אזורי מרום הגליל</option>
+    <option  >מרכז אזורי משגב</option>
+    <option  >מרכז אזורי שוהם</option>
+    <option  >מרכז כ"ח</option>
+    <option  >מרכז מיר"ב*</option>
+    <option  >מרכז שוהם</option>
+    <option  >מרכז שפירא</option>
+    <option  >מרכז תעשיות שער הנגב</option>
+    <option  >משאבי שדה</option>
+    <option  >משגב דב</option>
+    <option  >משגב עם</option>
+    <option  >משהד</option>
+    <option  >משואה</option>
+    <option  >משואות יצחק</option>
+    <option  >משכיות</option>
+    <option  >משמר איילון</option>
+    <option  >משמר דוד</option>
+    <option  >משמר הירדן</option>
+    <option  >משמר הנגב</option>
+    <option  >משמר העמק</option>
+    <option  >משמר השבעה</option>
+    <option  >משמר השרון</option>
+    <option  >משמרות</option>
+    <option  >משמרת</option>
+    <option  >משען</option>
+    <option  >מתן</option>
+    <option  >מתת</option>
+    <option  >מתתיהו</option>
+    <option  >נאות גולן</option>
+    <option  >נאות הכיכר</option>
+    <option  >נאות מרדכי</option>
+    <option  >נאות סמדר</option>
+    <option  >נאעורה</option>
+    <option  >נבטים</option>
+    <option  >נגבה</option>
+    <option  >נגוהות</option>
+    <option  >נהורה</option>
+    <option  >נהלל</option>
+    <option  >נהרייה</option>
+    <option  >נוב</option>
+    <option  >נוגה</option>
+    <option  >נוה</option>
+    <option  >נווה</option>
+    <option  >נווה אבות</option>
+    <option  >נווה אור</option>
+    <option  >נווה אטי"ב</option>
+    <option  >נווה אילן</option>
+    <option  >נווה אילן*</option>
+    <option  >נווה איתן</option>
+    <option  >נווה אפעל</option>
+    <option  >נווה דניאל</option>
+    <option  >נווה דקלים</option>
+    <option  >נווה זוהר</option>
+    <option  >נווה זיו</option>
+    <option  >נווה חריף</option>
+    <option  >נווה ים</option>
+    <option  >נווה ימין</option>
+    <option  >נווה ירק</option>
+    <option  >נווה מבטח</option>
+    <option  >נווה מיכאל</option>
+    <option  >נווה שלום</option>
+    <option  >נועם</option>
+    <option  >נוף איילון</option>
+    <option  >נופים</option>
+    <option  >נופית</option>
+    <option  >נופך</option>
+    <option  >נוקדים</option>
+    <option  >נורדייה</option>
+    <option  >נורית</option>
+    <option  >נחושה</option>
+    <option  >נחל עוז</option>
+    <option  >נחלה</option>
+    <option  >נחליאל</option>
+    <option  >נחלים</option>
+    <option  >נחם</option>
+    <option  >נחף</option>
+    <option  >נחשולים</option>
+    <option  >נחשון</option>
+    <option  >נחשונים</option>
+    <option  >נטועה</option>
+    <option  >נטור</option>
+    <option  >נטע</option>
+    <option  >נטעים</option>
+    <option  >נטף</option>
+    <option  >ניין</option>
+    <option  >ניל"י</option>
+    <option  >ניסנית</option>
+    <option  >ניצן</option>
+    <option  >ניצן ב'</option>
+    <option  >ניצנה (קהילת חינוך)</option>
+    <option  >ניצני סיני</option>
+    <option  >ניצני עוז</option>
+    <option  >ניצנים</option>
+    <option  >ניר אליהו</option>
+    <option  >ניר בנים</option>
+    <option  >ניר גלים</option>
+    <option  >ניר דוד (תל עמל)</option>
+    <option  >ניר ח"ן</option>
+    <option  >ניר יפה</option>
+    <option  >ניר יצחק</option>
+    <option  >ניר ישראל</option>
+    <option  >ניר משה</option>
+    <option  >ניר עוז</option>
+    <option  >ניר עם</option>
+    <option  >ניר עציון</option>
+    <option  >ניר עקיבא</option>
+    <option  >ניר צבי</option>
+    <option  >נירים</option>
+    <option  >נירית</option>
+    <option  >נירן</option>
+    <option  >נמל תעופה בן-גוריון</option>
+    <option  >נס הרים</option>
+    <option  >נס עמים</option>
+    <option  >נס ציונה</option>
+    <option  >נעורים</option>
+    <option  >נעלה</option>
+    <option  >נעמ"ה</option>
+    <option  >נעמי</option>
+    <option  >נען</option>
+    <option  >נצר חזני</option>
+    <option  >נצר חזני*</option>
+    <option  >נצר סרני</option>
+    <option  >נצרים</option>
+    <option  >נצרת</option>
+    <option  >נצרת עילית</option>
+    <option  >נשר</option>
+    <option  >נתיב הגדוד</option>
+    <option  >נתיב הל"ה</option>
+    <option  >נתיב העשרה</option>
+    <option  >נתיב השיירה</option>
+    <option  >נתיבות</option>
+    <option  >נתניה</option>
+    <option  >סאג'ור</option>
+    <option  >סאסא</option>
+    <option  >סביון*</option>
+    <option  >סגולה</option>
+    <option  >סואעד (חמרייה)*</option>
+    <option  >סולם</option>
+    <option  >סוסיה</option>
+    <option  >סופה</option>
+    <option  >סח'נין</option>
+    <option  >סלמה</option>
+    <option  >סלעית</option>
+    <option  >סמר</option>
+    <option  >סנסנה</option>
+    <option  >סנסנה</option>
+    <option  >סעד</option>
+    <option  >סער</option>
+    <option  >ספיר</option>
+    <option  >סתרייה</option>
+    <option  >עבדון</option>
+    <option  >עברון</option>
+    <option  >עגור</option>
+    <option  >ע'ג'ר</option>
+    <option  >עד הלום</option>
+    <option  >עדי</option>
+    <option  >עדנים</option>
+    <option  >עוזה</option>
+    <option  >עוזייר</option>
+    <option  >עולש</option>
+    <option  >עומר</option>
+    <option  >עופר</option>
+    <option  >עוצם</option>
+    <option  >עזוז</option>
+    <option  >עזר</option>
+    <option  >עזריאל</option>
+    <option  >עזריה</option>
+    <option  >עזריקם</option>
+    <option  >עטרת</option>
+    <option  >עידן</option>
+    <option  >עיילבון</option>
+    <option  >עיינות</option>
+    <option  >עילוט</option>
+    <option  >עין איילה</option>
+    <option  >עין אל-אסד</option>
+    <option  >עין גב</option>
+    <option  >עין גדי</option>
+    <option  >עין דור</option>
+    <option  >עין הבשור</option>
+    <option  >עין הוד</option>
+    <option  >עין החורש</option>
+    <option  >עין המפרץ</option>
+    <option  >עין הנצי"ב</option>
+    <option  >עין העמק</option>
+    <option  >עין השופט</option>
+    <option  >עין השלושה</option>
+    <option  >עין ורד</option>
+    <option  >עין זיוון</option>
+    <option  >עין חוד</option>
+    <option  >עין חצבה</option>
+    <option  >עין חרוד (איחוד)</option>
+    <option  >עין חרוד (מאוחד)</option>
+    <option  >עין יהב</option>
+    <option  >עין יעקב</option>
+    <option  >עין כרם-בי"ס חקלאי</option>
+    <option  >עין כרמל</option>
+    <option  >עין מאהל</option>
+    <option  >עין נקובא</option>
+    <option  >עין עירון</option>
+    <option  >עין צורים</option>
+    <option  >עין קנייא</option>
+    <option  >עין ראפה</option>
+    <option  >עין שמר</option>
+    <option  >עין שריד</option>
+    <option  >עין תמר</option>
+    <option  >עינת</option>
+    <option  >עיר אובות</option>
+    <option  >עיר כרמל</option>
+    <option  >עכו</option>
+    <option  >עלומים</option>
+    <option  >עלי</option>
+    <option  >עלי זהב</option>
+    <option  >עלמה</option>
+    <option  >עלמון</option>
+    <option  >עמוקה</option>
+    <option  >עמינדב</option>
+    <option  >עמיעד</option>
+    <option  >עמיעוז</option>
+    <option  >עמיקם</option>
+    <option  >עמיר</option>
+    <option  >עמנואל</option>
+    <option  >עמקה</option>
+    <option  >ענב</option>
+    <option  >עספיא</option>
+    <option  >עפולה</option>
+    <option  >עפרה</option>
+    <option  >עץ אפרים</option>
+    <option  >עצמון שגב</option>
+    <option  >עראבה</option>
+    <option  >עראמשה*</option>
+    <option  >ערב אל נעים</option>
+    <option  >ערד</option>
+    <option  >ערוגות</option>
+    <option  >ערערה</option>
+    <option  >ערערה-בנגב</option>
+    <option  >עשרת</option>
+    <option  >עתלית</option>
+    <option  >עתניאל</option>
+    <option  >פארן</option>
+    <option  >פארק תמ"ד*</option>
+    <option  >פארק תעשיה חבל מודיעים</option>
+    <option  >פארק תעשיות ספירים</option>
+    <option  >פארק תעשיות עמק חפר</option>
+    <option  >פאת שדה</option>
+    <option  >פדואל</option>
+    <option  >פדויים</option>
+    <option  >פדיה</option>
+    <option  >פוריידיס</option>
+    <option  >פורייה - כפר עבודה</option>
+    <option  >פורייה - נווה עובד</option>
+    <option  >פורייה עילית</option>
+    <option  >פורת</option>
+    <option  >פטיש</option>
+    <option  >פלך</option>
+    <option  >פלמחים</option>
+    <option  >פני חבר</option>
+    <option  >פסגות</option>
+    <option  >פסוטה</option>
+    <option  >פעמי תש"ז</option>
+    <option  >פצאל</option>
+    <option  >פקיעין (בוקייעה)</option>
+    <option  >פקיעין חדשה</option>
+    <option  >פרדס חנה-כרכור</option>
+    <option  >פרדסייה</option>
+    <option  >פרוד</option>
+    <option  >פרזון</option>
+    <option  >פרי גן</option>
+    <option  >פתח תקווה</option>
+    <option  >פתחיה</option>
+    <option  >צאלים</option>
+    <option  >צביה</option>
+    <option  >צבעון</option>
+    <option  >צובה</option>
+    <option  >צוחר</option>
+    <option  >צופייה</option>
+    <option  >צופים</option>
+    <option  >צופית</option>
+    <option  >צופר</option>
+    <option  >צוקי ים</option>
+    <option  >צוקים</option>
+    <option  >צור הדסה</option>
+    <option  >צור יצחק</option>
+    <option  >צור משה</option>
+    <option  >צור נתן</option>
+    <option  >צוריאל</option>
+    <option  >צורית</option>
+    <option  >צורן-קדימה*</option>
+    <option  >ציפורי</option>
+    <option  >צלפון</option>
+    <option  >צמח - מפעלי עמק הירדן</option>
+    <option  >צנדלה</option>
+    <option  >צפרייה</option>
+    <option  >צפרירים</option>
+    <option  >צפת</option>
+    <option  >צרופה</option>
+    <option  >צרעה</option>
+    <option  >קבוצת יבנה</option>
+    <option  >קדומים</option>
+    <option  >קדימה-צורן</option>
+    <option  >קדמה</option>
+    <option  >קדמת צבי</option>
+    <option  >קדר</option>
+    <option  >קדרון</option>
+    <option  >קדרים</option>
+    <option  >קוממיות</option>
+    <option  >קורנית</option>
+    <option  >קטורה</option>
+    <option  >קטיף</option>
+    <option  >קיסריה</option>
+    <option  >קלחים</option>
+    <option  >קליה</option>
+    <option  >קלנסווה</option>
+    <option  >קלע</option>
+    <option  >קציר                </option>
+    <option  >קציר-חריש</option>
+    <option  >קצר א-סר</option>
+    <option  >קצרין</option>
+    <option  >קריית אונו</option>
+    <option  >קריית ארבע</option>
+    <option  >קריית אתא</option>
+    <option  >קריית ביאליק</option>
+    <option  >קריית גת</option>
+    <option  >קריית חינוך מרחבים</option>
+    <option  >קריית חינוך מרחבים*</option>
+    <option  >קריית טבעון</option>
+    <option  >קריית ים</option>
+    <option  >קריית יערים</option>
+    <option  >קריית יערים (מוסד)</option>
+    <option  >קריית מוצקין</option>
+    <option  >קריית מלאכי</option>
+    <option  >קריית נטפים</option>
+    <option  >קריית ענבים</option>
+    <option  >קריית עקרון</option>
+    <option  >קריית שלמה</option>
+    <option  >קריית שמונה</option>
+    <option  >קרית חינוך עזתה</option>
+    <option  >קרית תעופה</option>
+    <option  >קרני שומרון</option>
+    <option  >קשת</option>
+    <option  >ראמה</option>
+    <option  >ראס אל-עין</option>
+    <option  >ראס עלי</option>
+    <option  >ראש העין</option>
+    <option  >ראש פינה</option>
+    <option  >ראש צורים</option>
+    <option  >ראשון לציון</option>
+    <option  >רבבה</option>
+    <option  >רבדים</option>
+    <option  >רביבים</option>
+    <option  >רביד</option>
+    <option  >רגבה</option>
+    <option  >רגבים</option>
+    <option  >רהט</option>
+    <option  >רווחה</option>
+    <option  >רוויה</option>
+    <option  >רוח מדבר</option>
+    <option  >רוחמה</option>
+    <option  >רומאנה</option>
+    <option  >רומת הייב</option>
+    <option  >רועי</option>
+    <option  >רותם</option>
+    <option  >רחוב</option>
+    <option  >רחובות</option>
+    <option  >רחלים</option>
+    <option  >ריחאנייה</option>
+    <option  >ריחן</option>
+    <option  >ריינה</option>
+    <option  >רימונים</option>
+    <option  >רינתיה</option>
+    <option  >רכסים</option>
+    <option  >רם-און</option>
+    <option  >רמות</option>
+    <option  >רמות השבים</option>
+    <option  >רמות מאיר</option>
+    <option  >רמות מנשה</option>
+    <option  >רמות נפתלי</option>
+    <option  >רמלה</option>
+    <option  >רמת אפעל</option>
+    <option  >רמת גן</option>
+    <option  >רמת דוד</option>
+    <option  >רמת הכובש</option>
+    <option  >רמת השופט</option>
+    <option  >רמת השרון</option>
+    <option  >רמת חובב</option>
+    <option  >רמת יוחנן</option>
+    <option  >רמת ישי</option>
+    <option  >רמת מגשימים</option>
+    <option  >רמת פנקס</option>
+    <option  >רמת צבי</option>
+    <option  >רמת רזיאל</option>
+    <option  >רמת רחל</option>
+    <option  >רנן</option>
+    <option  >רעים</option>
+    <option  >רעננה</option>
+    <option  >רפיח ים</option>
+    <option  >רקפת</option>
+    <option  >רשפון</option>
+    <option  >רשפים</option>
+    <option  >רתמים</option>
+    <option  >שא-נור</option>
+    <option  >שאר ישוב</option>
+    <option  >שבי ציון</option>
+    <option  >שבי שומרון</option>
+    <option  >שבלי - אום אל-גנם</option>
+    <option  >שגב</option>
+    <option  >שגב-שלום</option>
+    <option  >שגור*</option>
+    <option  >שדה אילן</option>
+    <option  >שדה אליהו</option>
+    <option  >שדה אליעזר</option>
+    <option  >שדה בוקר</option>
+    <option  >שדה דוד</option>
+    <option  >שדה ורבורג</option>
+    <option  >שדה יואב</option>
+    <option  >שדה יעקב</option>
+    <option  >שדה יצחק</option>
+    <option  >שדה משה</option>
+    <option  >שדה נחום</option>
+    <option  >שדה נחמיה</option>
+    <option  >שדה ניצן</option>
+    <option  >שדה עוזיהו</option>
+    <option  >שדה צבי</option>
+    <option  >שדות ים</option>
+    <option  >שדות מיכה</option>
+    <option  >שדי אברהם</option>
+    <option  >שדי חמד</option>
+    <option  >שדי תרומות</option>
+    <option  >שדמה</option>
+    <option  >שדמות דבורה</option>
+    <option  >שדמות מחולה</option>
+    <option  >שדרות</option>
+    <option  >שואבה</option>
+    <option  >שובה</option>
+    <option  >שובל</option>
+    <option  >שוהם</option>
+    <option  >שומרה</option>
+    <option  >שומרייה</option>
+    <option  >שוקדה</option>
+    <option  >שורש</option>
+    <option  >שורשים</option>
+    <option  >שושנת העמקים</option>
+    <option  >שזור</option>
+    <option  >שחר</option>
+    <option  >שחרות</option>
+    <option  >שיבולים</option>
+    <option  >שיטים</option>
+    <option  >שייח' דנון</option>
+    <option  >שילה</option>
+    <option  >שילת</option>
+    <option  >שכניה</option>
+    <option  >שלווה</option>
+    <option  >שלווה במדבר</option>
+    <option  >שלוחות</option>
+    <option  >שלומי</option>
+    <option  >שלומית</option>
+    <option  >שלומציון</option>
+    <option  >שליו</option>
+    <option  >שמיר</option>
+    <option  >שמעה</option>
+    <option  >שמרת</option>
+    <option  >שמשית</option>
+    <option  >שני</option>
+    <option  >שניר</option>
+    <option  >שעב</option>
+    <option  >שעל</option>
+    <option  >שעלבים</option>
+    <option  >שער אפרים</option>
+    <option  >שער הגולן</option>
+    <option  >שער העמקים</option>
+    <option  >שער מנשה</option>
+    <option  >שערי אברהם</option>
+    <option  >שערי תקווה</option>
+    <option  >שפיים</option>
+    <option  >שפיר</option>
+    <option  >שפר</option>
+    <option  >שפרעם</option>
+    <option  >שקד</option>
+    <option  >שקף</option>
+    <option  >שרונה</option>
+    <option  >שריגים (לי-און)</option>
+    <option  >שריד</option>
+    <option  >שרשרת</option>
+    <option  >שתולה</option>
+    <option  >שתולים</option>
+    <option  >תאשור</option>
+    <option  >תדהר</option>
+    <option  >תובל</option>
+    <option  >תומר</option>
+    <option  >תושייה</option>
+    <option  >תימורים</option>
+    <option  >תירוש</option>
+    <option  >תל אביב -יפו</option>
+    <option  >תל חי (מכללה)</option>
+    <option  >תל יוסף</option>
+    <option  >תל יצחק</option>
+    <option  >תל מונד</option>
+    <option  >תל עדשים</option>
+    <option  >תל קציר</option>
+    <option  >תל שבע</option>
+    <option  >תל תאומים</option>
+    <option  >תל-חי</option>
+    <option  >תלם</option>
+    <option  >תלמי אליהו</option>
+    <option  >תלמי אלעזר</option>
+    <option  >תלמי ביל"ו</option>
+    <option  >תלמי יוסף</option>
+    <option  >תלמי יחיאל</option>
+    <option  >תלמי יפה</option>
+    <option  >תלמים</option>
+    <option  >תמרת</option>
+    <option  >תנובות</option>
+    <option  >תעוז</option>
+    <option  >תעשיון בינימין*</option>
+    <option  >תעשיון בר-לב</option>
+    <option  >תעשיון גליל תחתון</option>
+    <option  >תעשיון דלתון</option>
+    <option  >תעשיון השרון</option>
+    <option  >תעשיון חבל יבנה</option>
+    <option  >תעשיון חוף יבנה</option>
+    <option  >תעשיון חצב*</option>
+    <option  >תעשיון מבצע*</option>
+    <option  >תעשיון מיתרים</option>
+    <option  >תעשיון צריפין</option>
+    <option  >תעשיון קש"ת*</option>
+    <option  >תעשיון ראם*</option>
+    <option  >תעשיון שח"ק</option>
+    <option  >תעשיות גליל תחתון</option>
+    <option >תעשיות ספירים</option>
+    <option  >תפרח</option>
+    <option  >תקומה</option>
+    <option  >תקוע</option>
+    <option  >תרבין א-צאנע (יישוב)*</option>
+    <option  >תרדיון</option>
+    <option  >תרום</option>
+    </select>
+    <label style="margin-left: 10px">מדינה</label>
+    <select id="state">
+    <option>אבחזיסטאן</option>
+    <option>אוגנדה</option>
+    <option>אוזבקיסטן</option>
+    <option>אוסטריה</option>
+    <option>אוסטרליה</option>
+    <option>אוקראינה</option>
+    <option>אורגוואי</option>
+    <option>אזור תעלת פנמה</option>
+    <option>אזרביג'אן</option>
+    <option>איחוד האמירויות הערב</option>
+    <option>איטליה</option>
+    <option>איי גילברט ואליס</option>
+    <option>איי הבתולה</option>
+    <option>איי ווליס ופוטונה</option>
+    <option>איי טורקס וקייקוס</option>
+    <option>איי מרשל</option>
+    <option>איי נורפולק</option>
+    <option>איי סיישל</option>
+    <option>איי פאלקלנד</option>
+    <option>איי פיגי</option>
+    <option>איי קומורו</option>
+    <option>איי קוק</option>
+    <option>איי קיימן</option>
+    <option>איי קייפ וורדה</option>
+    <option>איי שלמה הבריטיים</option>
+    <option>אינדונזיה</option>
+    <option>איסלנד</option>
+    <option>אירופה לא ידוע</option>
+    <option>אירלנד</option>
+    <option>אירן</option>
+    <option>אל סלבדור</option>
+    <option>אלבניה</option>
+    <option>אלגיריה</option>
+    <option>אמריקה לא ידוע</option>
+    <option>אנגולה</option>
+    <option>אנדורה</option>
+    <option>אנטיגואה וברבודה</option>
+    <option>אסטוניה</option>
+    <option>אסיה לא ידוע</option>
+    <option>אפגניסטן</option>
+    <option>אפריקה לא ידוע</option>
+    <option>אקואדור</option>
+    <option>ארגנטינה</option>
+    <option>אריתראה</option>
+    <option>ארמניה</option>
+    <option>ארצות הברית</option>
+    <option>אתיופיה</option>
+    <option>בדרך לארץ</option>
+    <option>בהמס</option>
+    <option>בוטן</option>
+    <option>בוטסואנה</option>
+    <option>בולגריה</option>
+    <option>בוליביה</option>
+    <option>בוסניה הרצגובינה</option>
+    <option>בורונדי</option>
+    <option>בורקינה פאסו</option>
+    <option>בחריין</option>
+    <option>בילורוסיה</option>
+    <option>בלב ים</option>
+    <option>בלגיה</option>
+    <option>בליז</option>
+    <option>בנגלדש</option>
+    <option>בנין )דהומי(</option>
+    <option>ברבדוס</option>
+    <option>ברוניי</option>
+    <option>ברזיל</option>
+    <option>ברית המועצות</option>
+    <option>ברמודה</option>
+    <option>גאורגיה</option>
+    <option>גאנה</option>
+    <option>גבון</option>
+    <option>גואדאלופ</option>
+    <option>גואם</option>
+    <option>גווטאמלה</option>
+    <option>גויאנה</option>
+    <option>גויאנה הצרפתית</option>
+    <option>גיבוטי</option>
+    <option>גיברלטר</option>
+    <option>גינאה</option>
+    <option>גינאה ביסאו</option>
+    <option>גינאה החדשה</option>
+    <option>גינאה המשוונית</option>
+    <option>גמביה</option>
+    <option>גמייקה</option>
+    <option>גרוזיה</option>
+    <option>גרמניה</option>
+    <option>גרמניה המזרחית</option>
+    <option>גרמניה המערבית</option>
+    <option>גרנדה</option>
+    <option>דומיניקה</option>
+    <option>דנמרק</option>
+    <option>דרום אמריקה</option>
+    <option>דרום אפריקה</option>
+    <option>דרום סודאן</option>
+    <option>האיטי</option>
+    <option>האיים ההברדיים</option>
+    <option>האנטילים ההולנדים</option>
+    <option>הודו</option>
+    <option>הולנד</option>
+    <option>הונג קונג</option>
+    <option>הונגריה</option>
+    <option>הונדורס</option>
+    <option>הממלכה המאוחדת</option>
+    <option>הרפ הדומיניקנית</option>
+    <option>ויטנאם</option>
+    <option>ויטנאם הדרומית</option>
+    <option>ונואטו</option>
+    <option>ונצואלה</option>
+    <option>ותיקן</option>
+    <option>זימבאבווה</option>
+    <option>זמביה</option>
+    <option>חוף השנהב</option>
+    <option>טג'יקיסטאן</option>
+    <option>טובלו</option>
+    <option>טוגו</option>
+    <option>טונגה</option>
+    <option>טיוון</option>
+    <option>טימור הפורטוגלית</option>
+    <option>טנגר</option>
+    <option>טנזניה</option>
+    <option>טרינידד וטובגו</option>
+    <option>יוגוסלביה</option>
+    <option>יוון</option>
+    <option>יפן</option>
+    <option>ירדן</option>
+    <option>ישראל</option>
+    <option>כווית</option>
+    <option>לא רשום</option>
+    <option>לאוס</option>
+    <option>לבנון</option>
+    <option>לוב</option>
+    <option>לוכסמבורג</option>
+    <option>לטביה</option>
+    <option>ליבריה</option>
+    <option>ליטא</option>
+    <option>ליכטנשטיין</option>
+    <option>לסוטו</option>
+    <option>מאוריטניה</option>
+    <option>מאוריציוס</option>
+    <option>מאלי</option>
+    <option>מדגסקר</option>
+    <option>מוזמביק</option>
+    <option>מולדובה</option>
+    <option>מונגוליה</option>
+    <option>מונטנגרו</option>
+    <option>מונסרת</option>
+    <option>מונקו</option>
+    <option>מזרח טימור</option>
+    <option>מיאנמר )בורמה(</option>
+    <option>מיקרונזיה</option>
+    <option>מלאווי</option>
+    <option>מלדיבים</option>
+    <option>מלזיה</option>
+    <option>מלטה</option>
+    <option>מצרים</option>
+    <option>מקאו</option>
+    <option>מקדוניה</option>
+    <option>מקסיקו</option>
+    <option>מרוקו</option>
+    <option>מרוקו הספרדית</option>
+    <option>מרטיניק</option>
+    <option>מרכז אמריקה</option>
+    <option>נאורו</option>
+    <option>נורבגיה</option>
+    <option>ניגר</option>
+    <option>ניגריה</option>
+    <option>ניו זילנד</option>
+    <option>ניקרגואה</option>
+    <option>נמיביה</option>
+    <option>נפאל</option>
+    <option>סאו טומה ופרינציפה</option>
+    <option>סודן</option>
+    <option>סווזילנד</option>
+    <option>סומליה</option>
+    <option>סוריה</option>
+    <option>סורינם</option>
+    <option>סט הלנה</option>
+    <option>סט וינסנט</option>
+    <option>סט. לוציה</option>
+    <option>סט. קיטס ונביס</option>
+    <option>סיירה ליאונה</option>
+    <option>סין</option>
+    <option>סינגפור</option>
+    <option>סיקים</option>
+    <option>סלובניה</option>
+    <option>סלובקיה</option>
+    <option>סמואה</option>
+    <option>סמואה המערבית</option>
+    <option>סן מרינו</option>
+    <option>סנגל</option>
+    <option>ספרד</option>
+    <option>סרביה</option>
+    <option>סרי לנקה )צילון(</option>
+    <option>עדן</option>
+    <option>עומן</option>
+    <option>עירק</option>
+    <option>ערב הסעודית</option>
+    <option>פאפואה</option>
+    <option>פולין</option>
+    <option>פולינזיה הצרפתית</option>
+    <option>פורטו ריקו</option>
+    <option>פורטוגל</option>
+    <option>פיליפינים</option>
+    <option>פינלנד</option>
+    <option>פלאו</option>
+    <option>פנמה</option>
+    <option>פקיסטן</option>
+    <option>פרגוואי</option>
+    <option>פרו</option>
+    <option>צאד</option>
+    <option>צ'ילה</option>
+    <option>צכוסלובקיה</option>
+    <option>צכיה</option>
+    <option>צ'צ'ניה</option>
+    <option>צרפת</option>
+    <option>קובה</option>
+    <option>קולומביה</option>
+    <option>קונגו</option>
+    <option>קונגו, רפ. דמוק.</option>
+    <option>קוסובו</option>
+    <option>קוסטה ריקה</option>
+    <option>קוריאה</option>
+    <option>קוריאה הדרומית</option>
+    <option>קוריאה הצפונית</option>
+    <option>קזחסטאן</option>
+    <option>קטר</option>
+    <option>קירג'זסטאן</option>
+    <option>קיריבטי</option>
+    <option>קלדוניה החדשה</option>
+    <option>קמבודיה</option>
+    <option>קמרון</option>
+    <option>קנדה</option>
+    <option>קניה</option>
+    <option>קפריסין</option>
+    <option>קרואטיה</option>
+    <option>ראוניון</option>
+    <option>רואנדה</option>
+    <option>רודזיה</option>
+    <option>רומניה</option>
+    <option>רוסיה</option>
+    <option>רפ מרכז אפריקנית</option>
+    <option>שאר ארצות אוקיאניה</option>
+    <option>שאר ארצות אירופה</option>
+    <option>שאר ארצות אסיה</option>
+    <option>שאר ארצות אפריקה</option>
+    <option>שוודיה</option>
+    <option>שוויץ</option>
+    <option>תאילנד</option>
+    <option>תוניסיה</option>
+    <option>תורכיה</option>
+    <option>תורכמניסטאן</option>
+    <option>תימן</option>
+    <option>תימן הדמוקרטית</option>
+    </select>
+    <label style="margin-left: 10px">קומה בבניין</label><select id="floor">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+    </select>
+    </div>
+</script>
 
 <script type="text/template" id="TimeView">
-    <h2>הכנס תאריך נוכחי</h2>
-
-    <label>יום</label><select id="day">
+    <h2 style="text-align: center">הכנס תאריך נוכחי</h2>
+    <br/><br/>
+    <div style="align-content: center">
+        <label style="margin-left: 10px">יום</label><select id="day">
         <option>1</option>
         <option>2</option>
         <option>3</option>
@@ -66,8 +3049,7 @@
         <option>30</option>
         <option>31</option>
     </select>
-    <br/>
-    <label>חודש</label><select>
+        <label style="margin-left: 10px">חודש</label><select id="month">
         <option>1</option>
         <option>2</option>
         <option>3</option>
@@ -81,25 +3063,38 @@
         <option>11</option>
         <option>12</option>
     </select>
-    <br/>
-    <label>שנה</label><select>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
+        <label style="margin-left: 10px">שנה</label><select id="year">
+        <option>2004</option>
+        <option>2005</option>
+        <option>2006</option>
+        <option>2007</option>
+        <option>2008</option>
+        <option>2009</option>
+        <option>2010</option>
+        <option>2011</option>
+        <option>2012</option>
+        <option>2013</option>
+        <option>2014</option>
+        <option>2015</option>
+        <option>2016</option>
+        <option>2017</option>
+        <option>2018</option>
+        <option>2019</option>
+        <option>2020</option>
+        <option>2021</option>
+        <option>2022</option>
+        <option>2023</option>
+        <option>2024</option>
     </select>
+    </div>
 </script>
 
-
-
+<script type="text/template" id="Minus7View">
+    <h2 id="firstText" style="text-align: center">חשב: 100-7 וזכור את התוצאה</h2>
+    <h2 id="secondText" style="text-align: center; display: none">החסר 7 מהמספר שזכרת</h2>
+    <br/><br/>
+    <input type="text" id="calc"/>
+</script>
 
 
 <!-- =============== -->

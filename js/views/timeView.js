@@ -14,8 +14,20 @@ var TimeView = Backbone.View.extend({
     },
 
     getScore: function() {
-        var day = $('#day').val();
-        return parseInt(day);
+        var today = new Date();
+        var currentDay = today.getDate();
+        var currentMonth = today.getMonth()+1; //January is 0!
+        var currentYear = today.getFullYear();
+
+        var day = parseInt($('#day').val());
+        var month = parseInt($('#month').val());
+        var year = parseInt($('#year').val());
+
+        var score = 0;
+        day == currentDay ? ++score: score;
+        month == currentMonth ? ++score: score;
+        year == currentYear ? ++score: score;
+        return parseInt(score);
     }
 
 });

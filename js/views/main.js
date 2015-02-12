@@ -2,12 +2,17 @@ var AppView = Backbone.View.extend({
     el: '.dynamic-view',
 
     initialize: function(){
-        this.views = [new TimeView()];
+        this.minus7View = new Minus7View();
+        this.views = [new TimeView(), this.minus7View,  new LocationView(), this.minus7View];
         this.total = 0;
         var self = this;
         $('#startBtn').on('click', function(){
-            this.startTime = new Date();
-            self.render();
+            if($('#idBox').val() != '') {
+                this.startTime = new Date();
+                self.render();
+            }else{
+                $('#error').text('אנא הזמן מספר ת.ז');
+            }
         });
 
         $('#next').on('click', _.bind(this.doNext, this));
