@@ -3,7 +3,7 @@ var AppView = Backbone.View.extend({
 
     initialize: function(){
         this.minus7View = new Minus7View();
-        this.views = [new TimeView(), this.minus7View,  new LocationView(), this.minus7View, new PicturesView()];
+        this.views = [new TimeView(), this.minus7View,  new LocationView(), this.minus7View, new PicturesView(), new HourView()];
         this.total = 0;
         var self = this;
         $('#startBtn').on('click', function(){
