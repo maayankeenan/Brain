@@ -28,6 +28,10 @@ var TimeView = Backbone.View.extend({
         month == currentMonth ? ++score: score;
         year == currentYear ? ++score: score;
         return parseInt(score);
+    },
+
+    canContinue: function() {
+        return true;
     }
 
 });

@@ -24,6 +24,10 @@ var LocationView = Backbone.View.extend({
         state === "ישראל" ? ++score: score;
         floor == 7 ? ++score: score;
         return parseInt(score);
+    },
+
+    canContinue: function() {
+        return true;
     }
 
 });
