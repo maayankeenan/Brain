@@ -33,5 +33,9 @@ var Minus7View = Backbone.View.extend({
             this.calcResult = intVal;
         }
 
+    },
+
+    canContinue: function() {
+        return true;
     }
 });

@@ -34,6 +34,9 @@
 <script src="js/views/timeView.js" type="text/javascript"></script>
 <script src="js/views/locationView.js" type="text/javascript"></script>
 <script src="js/views/minus7View.js" type="text/javascript"></script>
+<script src="js/views/picturesView.js" type="text/javascript"></script>
+<script src="js/views/hourView.js" type="text/javascript"></script>
+<script src="js/views/nounsView.js" type="text/javascript"></script>
 
 <link href="resources/bootstrap-3.3.2-dist/css/bootstrap.css" rel="stylesheet" media="screen">
 
@@ -3094,6 +3097,29 @@
     <h2 id="secondText" style="text-align: center; display: none">החסר 7 מהמספר שזכרת</h2>
     <br/><br/>
     <input type="text" id="calc"/>
+</script>
+
+
+<script type="text/template" id="PicturesView">
+    <img width="300px" height="300px" id="wordImg"/>
+    <br/><br/>
+    <input type="text" id="word"/>
+</script>
+
+<script type="text/template" id="HourView">
+    <span id="hourText" style="text-align: center"></span>
+    <br/><br/>
+    <input type="text" id="hourInput"/>
+</script>
+
+<script type="text/template" id="NounsView">
+    <span id="nounText" style="text-align: center"></span>
+
+    <div id="nounsInput" style="display: none">
+        <input type="text" id="noun1"/>
+        <input type="text" id="noun2"/>
+        <input type="text" id="noun3"/>
+    </div>
 </script>
 
 
