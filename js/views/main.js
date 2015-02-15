@@ -4,7 +4,7 @@ var AppView = Backbone.View.extend({
     initialize: function(){
         this.minus7View = new Minus7View();
         this.nounsView = new NounsView();
-        this.views = [new TimeView(), this.minus7View,  new LocationView(), this.nounsView, this.minus7View, new PicturesView(), /*this.nounsView,*/ new HourView(), new AnalogWatchView()];
+        this.views = [new TimeView(), this.minus7View,  new LocationView(), this.nounsView, this.minus7View, new PicturesView(), this.nounsView, new HourView(), new AnalogWatchView()];
         this.total = 0;
         var self = this;
         $('#startBtn').on('click', function(){
@@ -27,15 +27,11 @@ var AppView = Backbone.View.extend({
     },
 
     doNext: function() {
-
-        if(this.views[this.viewIndex].canContinue())
-        {
+        if(this.views[this.viewIndex].canContinue() && this.viewIndex < this.views.length) {
             this.total += this.views[this.viewIndex].getScore();
             ++this.viewIndex;
             console.log(this.total);
             this.views[this.viewIndex].render();
         }
-
-        //when i-10 do finish
     }
 });

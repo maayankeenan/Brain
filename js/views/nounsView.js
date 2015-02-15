@@ -51,17 +51,17 @@ var NounsView = Backbone.View.extend({
         var noun2 = $('#noun2').val();
         var noun3 = $('#noun3').val();
 
-        if(this.selected.contains(noun1))
+        if(this.selected.indexOf(noun1) > -1)
         {
             score +=3;
         }
 
-        if(this.selected.contains(noun2))
+        if(this.selected.indexOf(noun2) > -1)
         {
             score +=3;
         }
 
-        if(this.selected.contains(noun3))
+        if(this.selected.indexOf(noun3) > -1)
         {
             score +=3;
         }
