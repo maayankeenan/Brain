@@ -10,15 +10,9 @@ var Minus7View = Backbone.View.extend({
 
     render: function () {
         this.$el.empty();
-        if(!this.template) {
-            this.template = _.template($('#Minus7View').html());
-            this.$el.html(this.template);
-            this.rendered = true;
-        } else {
-            this.$el.html(this.template);
-            $('#firstText', this.template).hide();
-            $('#secondText', this.template).show();
-        }
+        this.template = _.template($('#Minus7View').html());
+        this.$el.html(this.template);
+        $('#secondText').text(this.calcResult);
     },
 
     getScore: function () {

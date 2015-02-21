@@ -45,5 +45,9 @@ var AnalogWatchView = Backbone.View.extend({
         $('#minute')[0].style['transform'] = 'rotate('+angle * minute+'deg)';
         $('#second')[0].style['transform'] = 'rotate('+angle * second+'deg)';
         $('#hour')[0].style['transform'] = 'rotate('+hourAngle+'deg)';
+    },
+
+    canContinue : function(){
+        return true;
     }
 });

@@ -39,7 +39,7 @@ var AppView = Backbone.View.extend({
     },
 
     doNext: function() {
-        if(this.views[this.viewIndex].canContinue() && this.viewIndex < this.views.length) {
+        if(this.views[this.viewIndex].canContinue() && this.viewIndex < this.views.length - 1) {
 
             // stop timer
             this.endTime = new Date();
@@ -59,10 +59,15 @@ var AppView = Backbone.View.extend({
 
             // start new timer
             this.startTime = new Date();
+        } else if(this.viewIndex == this.views.length - 1) {
+            this.doFinish();
         }
     },
 
     doFinish : function() {
-      // save matrix with user is and total score in file
+        this.$el.empty();
+        var title = $('<h1 style="text-align: center">תודה על שיתןף הפעולה</h1>')
+        this.$el.append(title);
+        $('#next').remove();
     }
 });
