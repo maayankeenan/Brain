@@ -6,7 +6,17 @@ var NounsView = Backbone.View.extend({
 
     initialize: function(){
 
-        this.nouns = ['שולחן','כסא','מחברת','אמריקה','בורקס','דלעת','ירושלים','חרגול','חברים','כיסופים'];
+        this.nouns = [{word : "שולחן", vowelsErrors : ["שלחן"] , errors: ["שולכן", "שולחנ"]},
+            {word : "כסא",  vowelsErrors : ["כיסא", "כסה", "כסע"], errors: ["קסא"]},
+            {word : "מחברת", vowelsErrors : [], errors: ["מכברת"]},
+            {word : "אמריקה", vowelsErrors : ["עמריקה", "המריקה"], errors: ["אמריכה"]},
+            {word : "בורקס", vowelsErrors : ["ברקס"], errors: ["בורכס"]},
+            {word : "דלעת", vowelsErrors : ["דלאת", "דלהת"], errors: []},
+            {word : "ירושלים", vowelsErrors : ["ירושלם", "ירושליים", "ירשלים"], errors: []},
+            {word : "חרגול", vowelsErrors : ["חרגל"], errors: ["כרגול"]},
+            {word : "חברים", vowelsErrors : ["חברים", "חבריים", "חוורים"], errors: ["חברימ"]},
+            {word : "כיסופים", vowelsErrors : ["כיספים", "כיסופם", "כסופים"], errors: ["קיסופים", "כיסופימ"]}];
+
         this.nounsCount = 3;
         this.isViewMode = true;
 
@@ -31,6 +41,7 @@ var NounsView = Backbone.View.extend({
         }
         else
         {
+            $("#nounsHeadLine").hide();
             $("#nounText").hide();
             $("#nounsInput").show();
         }
@@ -45,26 +56,43 @@ var NounsView = Backbone.View.extend({
             return parseInt(score);
         }
 
-        var score = 1;
+        var score = 0;
 
         var noun1 = $('#noun1').val();
         var noun2 = $('#noun2').val();
         var noun3 = $('#noun3').val();
 
-        if(this.selected.indexOf(noun1) > -1)
-        {
-            score +=3;
-        }
+        var inputWords = [noun1, noun2, noun3];
 
-        if(this.selected.indexOf(noun2) > -1)
+        for(var j = 0; j < inputWords.length; j++)
         {
-            score +=3;
-        }
+            var inputWord = inputWords[j];
 
-        if(this.selected.indexOf(noun3) > -1)
-        {
-            score +=3;
-        }
+            if(inputWord)
+            {
+                for(var i = 0; i < this.selected.length; i++)
+                {
+                    var selectedWord = this.selected[i];
+
+                    if(inputWord === selectedWord.word)
+                    {
+                        score += 3;
+                        break;
+                    }
+                    else if(selectedWord.vowelsErrors.indexOf(inputWord) > (-1))
+                    {
+                        score += 2;
+                        break;
+                    }
+                    else if(selectedWord.errors.indexOf(inputWord) > (-1))
+                    {
+                        score += 1;
+                        break;
+                    }
+                }
+            }
+
+        };
 
         return parseInt(score);
     },
@@ -89,7 +117,7 @@ var NounsView = Backbone.View.extend({
                 clearTimeout(this.timer);
             }
 
-            var noun = this.selected[this.nounIndex];
+            var noun = this.selected[this.nounIndex].word;
             $('#nounText').text(noun);
             this.nounIndex++;
 
