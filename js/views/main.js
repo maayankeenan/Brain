@@ -66,7 +66,7 @@ var AppView = Backbone.View.extend({
 
     doFinish : function() {
         this.$el.empty();
-        var title = $('<h1 style="text-align: center">תודה על שיתןף הפעולה</h1>')
+        var title = $('<h1 style="text-align: center">תודה על שיתוף הפעולה</h1>')
         this.$el.append(title);
         $('#next').remove();
     }
