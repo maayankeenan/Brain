@@ -5,9 +5,16 @@ var PicturesView = Backbone.View.extend({
     el: '.dynamic-view',
 
     initialize: function(){
-        this.images = [{fileName : "http://www.hoax-slayer.com/images/jerky-dog.jpg" , word : "כלב"},
-            {fileName : "http://i2.kym-cdn.com/photos/images/newsfeed/000/406/325/b31.jpg" , word : "חתול"},
-            {fileName : "http://cdn.shopify.com/s/files/1/0227/0033/products/Davek_Umbrella_Elite_Open_Straight_1024x1024.jpg?" , word : "מטריה"}];
+        this.images = [{fileName : "./images/pics/dog.png" , word : "כלב", vowelsErrors : [] , errors: ["קלב", "כלו"]},
+            {fileName : "./images/pics/cat.jpg" , word : "חתול",  vowelsErrors : ["חתל"], errors: ["חטול"]},
+            {fileName : "./images/pics/umbrella.jpg" , word : "מטריה", vowelsErrors : ["מטרייה", "מיטריה"], errors: ["מתריה"]},
+            {fileName : "./images/pics/camera.jpg" , word : "מצלמה", vowelsErrors : ["מצלימה", "מצלמא"], errors: []},
+            {fileName : "./images/pics/clock.jpg" , word : "שעון", vowelsErrors : ["שאון", "שען", "שהון"], errors: ["שעונ"]},
+            {fileName : "./images/pics/ring.png" , word : "טבעת", vowelsErrors : ["טבאת", "טבהת"], errors: ["תבעת"]},
+            {fileName : "./images/pics/teapot.jpg" , word : "קומקום", vowelsErrors : ["קמקם", "קומקם", "קמקום"], errors: ["כומכום", "קומקומ", "קוםקום"]},
+            {fileName : "./images/pics/truck.jpg" , word : "משאית", vowelsErrors : ["משעית", "משהית", "משאת"], errors: ["משאיט"]},
+            {fileName : "./images/pics/watermelon.jpg" , word : "אבטיח", vowelsErrors : ["אבטח", "עבטיח", "הבטיח"], errors: ["אוטיח", "אבתיח"]},
+            {fileName : "./images/pics/banana.jpeg" , word : "בננה", vowelsErrors : [], errors: []}];
 
         this.count = 3;
         this.score = 0;
@@ -28,9 +35,22 @@ var PicturesView = Backbone.View.extend({
 
         if(this.count > 0)
         {
-            if($('#word').val() === this.currImg.word)
+            var inputWord = $('#word').val();
+
+            if(inputWord)
             {
-                this.score++;
+                if(inputWord === this.currImg.word)
+                {
+                    this.score += 3;
+                }
+                else if(this.currImg.vowelsErrors.indexOf(inputWord) > (-1))
+                {
+                    this.score += 2;
+                }
+                else if(this.currImg.errors.indexOf(inputWord) > (-1))
+                {
+                    this.score += 1;
+                }
             }
 
             this.nextPic();

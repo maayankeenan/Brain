@@ -50,6 +50,10 @@ var HourView = Backbone.View.extend({
                 {
                     score += 4;
                 }
+                else if((intHour === (this.hourIndex + 2)) || (intHour === (this.hourIndex)))
+                {
+                    score += 1;
+                }
             }
 
             if(!isNaN(hourAndMin[1]))
@@ -63,6 +67,10 @@ var HourView = Backbone.View.extend({
                     {
                         score += 2;
                     }
+                    else if((multiMin === (this.multiMinIndex + 3)) || (multiMin === (this.multiMinIndex + 1)))
+                    {
+                        score += 1;
+                    }
                 }
 
                 var min = parseInt(minutes[1]);
@@ -72,7 +80,12 @@ var HourView = Backbone.View.extend({
                     {
                         score += 2;
                     }
+                    else if((min === (this.minutesIndex + 2)) || (min === (this.minutesIndex)))
+                    {
+                        score += 1;
+                    }
                 }
+
             }
 
 

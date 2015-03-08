@@ -79,8 +79,8 @@ var AppView = Backbone.View.extend({
         this.finalResult["score"] = this.total;
         this.finalResult["data"] = this.statisticsMatrix;
 
-        $.get( "http://localhost:8080/ReportService/api/saveReportById/" + this.userId + "/" + encodeURIComponent(JSON.stringify(this.finalResult)),
-            function(data) {
+        $.get("http://localhost:8080/ReportService/api/saveReportById/" + this.userId + "/" + encodeURIComponent(JSON.stringify(this.finalResult)),
+            function (data) {
                 $('#next').remove();
                 self.$el.empty();
                 var prev = data ? JSON.parse(data) : undefined;
@@ -88,4 +88,5 @@ var AppView = Backbone.View.extend({
                 final.render();
             });
     }
+
 });
