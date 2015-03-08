@@ -2,6 +2,8 @@ var AppView = Backbone.View.extend({
     el: '.dynamic-view',
 
     initialize: function(){
+        this.finalResult = {};
+
         // recurring view
         this.minus7View = new Minus7View();
         this.nounsView = new NounsView();
@@ -16,7 +18,8 @@ var AppView = Backbone.View.extend({
         // register to events
         $('#startBtn').on('click', function(){
             if($('#idBox').val() != '') {
-                this.startTime = new Date();
+                self.userId = $('#idBox').val();
+                self.startTime = new Date();
                 self.render();
             }else{
                 $('#error').text('אנא הזמן מספר ת.ז');
@@ -39,7 +42,7 @@ var AppView = Backbone.View.extend({
     },
 
     doNext: function() {
-        if(this.views[this.viewIndex].canContinue() && this.viewIndex < this.views.length - 1) {
+        if(this.views[this.viewIndex].canContinue() && this.viewIndex < this.views.length) {
 
             // stop timer
             this.endTime = new Date();
@@ -55,19 +58,34 @@ var AppView = Backbone.View.extend({
 
             // continue to next view
             ++this.viewIndex;
-            this.views[this.viewIndex].render();
 
-            // start new timer
-            this.startTime = new Date();
-        } else if(this.viewIndex == this.views.length - 1) {
-            this.doFinish();
+            if(this.viewIndex < this.views.length) {
+                this.views[this.viewIndex].render();
+
+                // start new timer
+                this.startTime = new Date();
+            }
+            else {
+                this.doFinish();
+            }
         }
     },
 
     doFinish : function() {
-        this.$el.empty();
-        var title = $('<h1 style="text-align: center">תודה על שיתןף הפעולה</h1>')
-        this.$el.append(title);
-        $('#next').remove();
+        var self = this;
+        this.finalResult["Id"] = this.userId;
+        this.finalResult["date"] = new Date().toDateString();
+        this.finalResult["totalTime"] = new Date() - this.startTime;
+        this.finalResult["score"] = this.total;
+        this.finalResult["data"] = this.statisticsMatrix;
+
+        $.get( "http://localhost:8080/ReportService/api/saveReportById/" + this.userId + "/" + encodeURIComponent(JSON.stringify(this.finalResult)),
+            function(data) {
+                $('#next').remove();
+                self.$el.empty();
+                var prev = data ? JSON.parse(data) : undefined;
+                var final = new FinalView({currResult: self.finalResult, prevResult: prev});
+                final.render();
+            });
     }
 });

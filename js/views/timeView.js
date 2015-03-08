@@ -4,10 +4,6 @@
 var TimeView = Backbone.View.extend({
     el: '.dynamic-view',
 
-    initialize: function(){
-
-    },
-
     render: function(){
         this.$el.empty();
         this.$el.html(_.template($('#TimeView').html()));
