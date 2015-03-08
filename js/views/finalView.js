@@ -16,7 +16,7 @@ var FinalView = Backbone.View.extend({
         $('#score').text(' ' + this.current.score);
         $('#time').text( ' ' + this.current.time + ' מילישניות');
 
-        if(this.previous){
+        if(this.previous && this.previous.score && this.previous.totalTime){
             $('#prev').css('visibility', 'visible');
             $('#prevScore').text(' ' + (this.previous.score - this.current.score));
             $('#prevTime').text( ' ' + (this.previous.time - this.current.time) + ' מילישניות');
