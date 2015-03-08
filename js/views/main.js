@@ -9,7 +9,7 @@ var AppView = Backbone.View.extend({
         this.nounsView = new NounsView();
 
         // defining our views
-        this.views = [new TimeView()/*, this.minus7View,  new LocationView(), this.nounsView, this.minus7View, new PicturesView(), this.nounsView, new HourView(), new AnalogWatchView()*/];
+        this.views = [new TimeView(), this.minus7View,  new LocationView(), this.nounsView, this.minus7View, new PicturesView(), this.nounsView, new HourView(), new AnalogWatchView()];
 
         this.total = 0;
         var self = this;
