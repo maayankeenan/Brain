@@ -9,7 +9,7 @@ var AppView = Backbone.View.extend({
         this.nounsView = new NounsView();
 
         // defining our views
-        this.views = [new TimeView(), this.minus7View,  new LocationView(), this.nounsView, this.minus7View, new PicturesView(), this.nounsView, new HourView(), new AnalogWatchView()];
+        this.views = [new TimeView()/*, this.minus7View,  new LocationView(), this.nounsView, this.minus7View, new PicturesView(), this.nounsView, new HourView(), new AnalogWatchView()*/];
 
         this.total = 0;
         var self = this;
@@ -79,14 +79,25 @@ var AppView = Backbone.View.extend({
         this.finalResult["score"] = this.total;
         this.finalResult["data"] = this.statisticsMatrix;
 
-        $.get("http://localhost:8080/ReportService/api/saveReportById/" + this.userId + "/" + encodeURIComponent(JSON.stringify(this.finalResult)),
-            function (data) {
-                $('#next').remove();
-                self.$el.empty();
-                var prev = data ? JSON.parse(data) : undefined;
-                var final = new FinalView({currResult: self.finalResult, prevResult: prev});
-                final.render();
-            });
+        var $loading = $(_.template($('#Loading').html())());
+        $('body').append($loading);
+
+        setTimeout(function() {
+            $.get("http://localhost:8080/ReportService/api/saveReportById/" + self.userId + "/" + encodeURIComponent(JSON.stringify(self.finalResult)),
+                function (data) {
+                    $('#next').remove();
+                    self.$el.empty();
+                    var prev = data ? JSON.parse(data) : undefined;
+                    var final = new FinalView({currResult: self.finalResult, prevResult: prev});
+                    final.render();
+                    $loading.remove();
+                }
+            );
+        }, 3000);
+
     }
 
 });
+
+
+
