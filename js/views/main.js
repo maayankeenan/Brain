@@ -9,7 +9,7 @@ var AppView = Backbone.View.extend({
         this.nounsView = new NounsView();
 
         // defining our views
-        this.views = [new TimeView(), this.minus7View,  new LocationView(), this.nounsView, this.minus7View, new PicturesView(), this.nounsView, new HourView(), new AnalogWatchView()];
+        this.views = [new TimeView(), this.minus7View,  new LocationView(), this.minus7View, this.nounsView, this.minus7View, new PicturesView(), this.minus7View, this.nounsView, this.minus7View, new HourView(), new AnalogWatchView()];
 
         this.total = 0;
         var self = this;
@@ -19,7 +19,7 @@ var AppView = Backbone.View.extend({
         $('#startBtn').on('click', function(){
             if($('#idBox').val() != '') {
                 self.userId = $('#idBox').val();
-                self.startTime = new Date();
+                self.generalStartTime = new Date();
                 self.render();
             }else{
                 $('#error').text('אנא הזמן מספר ת.ז');
@@ -75,7 +75,7 @@ var AppView = Backbone.View.extend({
         var self = this;
         this.finalResult["Id"] = this.userId;
         this.finalResult["date"] = new Date().toDateString();
-        this.finalResult["totalTime"] = new Date() - this.startTime;
+        this.finalResult["totalTime"] = new Date() - this.generalStartTime;
         this.finalResult["score"] = this.total;
         this.finalResult["data"] = this.statisticsMatrix;
 
